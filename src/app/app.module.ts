@@ -2,25 +2,25 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
+import { PublicpagesModule } from './publicpages/publicpages.module';
+
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { BroadcrumbsComponent } from './shared/broadcrumbs/broadcrumbs.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
+import { PagesModule } from './pages/pages.module';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    BroadcrumbsComponent,
-    SidebarComponent,
-    DashboardComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AuthModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
