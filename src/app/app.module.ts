@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
-import { PublicpagesModule } from './publicpages/publicpages.module';
+import { PagesModule } from './pages/pages.module';
 
 import { AppComponent } from './app.component';
-import { NopagefoundComponent } from './pages/nopagefound/nopagefound.component';
-import { PagesModule } from './pages/pages.module';
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+import { PublicpagesModule } from './publicpages/publicpages.module';
+
+
 
 
 
@@ -20,7 +22,8 @@ import { PagesModule } from './pages/pages.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    PagesModule
+    PagesModule,
+    PublicpagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

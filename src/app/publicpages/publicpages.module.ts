@@ -7,11 +7,6 @@ import { HomeComponent } from './home/home.component';
 import { DeployComponent } from './deploy/deploy.component';
 import { PublicpagesComponent } from './publicpages.component';
 
-
-
-
-
-
 @NgModule({
   declarations: [
     PublicpagesComponent,

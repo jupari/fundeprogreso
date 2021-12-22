@@ -7,9 +7,7 @@ const routes: Routes=[
     {
         path:'admin',
         component: PagesComponent,
-        children:[
-            { path:'dashboard', component:DashboardComponent },
-        ]
+        loadChildren: ()=>import('./pageschild-routing').then(m=>m.PagesChildRouting)
     }
 ]
 
