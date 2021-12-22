@@ -17,7 +17,8 @@ import { RouterModule } from '@angular/router';
   ],
   exports:[
     PheaderComponent,
-    PfooterComponent
+    PfooterComponent,
+
   ]
 })
 export class PsharedModule { }

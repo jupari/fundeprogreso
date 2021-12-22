@@ -1,18 +1,21 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <div class="form-row mb-3"><button type="button" class="btn waves-effect waves-light btn-info">Nuevo Grupo</button></div> 
+            <div class="form-row mb-3">
+                <button type="button"  
+                        class="btn waves-effect waves-light btn-info"
+                        (click)="mostrarModal()">
+                    Nuevo Grupo
+                </button>
+            </div> 
             <h4 class="card-title">Grupos</h4>
             <h6 class="card-subtitle">Consulta los Grupos creados.</h6>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                            <th>Role</th>
+                            <th>Código</th>
+                            <th>Grupo</th>
                             <th class="text-nowrap">Acciones</th>
                         </tr>
                     </thead>
@@ -20,9 +23,6 @@
                         <tr>
                             <td>1</td>
                             <td>Deshmukh</td>
-                            <td>Prohaska</td>
-                            <td>@Genelia</td>
-                            <td><span class="label label-danger">admin</span> </td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
@@ -31,9 +31,6 @@
                         <tr>
                             <td>2</td>
                             <td>Deshmukh</td>
-                            <td>Gaylord</td>
-                            <td>@Ritesh</td>
-                            <td><span class="label label-info">member</span> </td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
@@ -42,9 +39,6 @@
                         <tr>
                             <td>3</td>
                             <td>Sanghani</td>
-                            <td>Gusikowski</td>
-                            <td>@Govinda</td>
-                            <td><span class="label label-warning">developer</span> </td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
@@ -53,39 +47,17 @@
                         <tr>
                             <td>4</td>
                             <td>Roshan</td>
-                            <td>Rogahn</td>
-                            <td>@Hritik</td>
-                            <td><span class="label label-success">supporter</span> </td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Joshi</td>
-                            <td>Hickle</td>
-                            <td>@Maruti</td>
-                            <td><span class="label label-info">member</span> </td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Nigam</td>
-                            <td>Eichmann</td>
-                            <td>@Sonu</td>
-                            <td><span class="label label-success">supporter</span> </td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
+                       
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+
+<app-modalgrupos></app-modalgrupos>

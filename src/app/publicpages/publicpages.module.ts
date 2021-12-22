@@ -12,6 +12,7 @@ import { PublicpagesComponent } from './publicpages.component';
     PublicpagesComponent,
     HomeComponent,
     DeployComponent,
+
   ],
   imports: [
     CommonModule,

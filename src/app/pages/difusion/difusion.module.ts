@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { GruposComponent } from './grupos/grupos.component';
 import { DocsComponent } from './docs/docs.component';
+import { ComponentesModule } from 'src/app/componentes/componentes.module';
 
 
 
@@ -13,7 +14,8 @@ import { DocsComponent } from './docs/docs.component';
     DocsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ComponentesModule
   ],
   exports:[
     GruposComponent,

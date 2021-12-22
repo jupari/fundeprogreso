@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+
+declare function carouselInit():any;
+
 @Component({
   selector: 'app-publicpages',
   templateUrl: './publicpages.component.html',
@@ -10,6 +13,7 @@ export class PublicpagesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //carouselInit();
   }
 
 }

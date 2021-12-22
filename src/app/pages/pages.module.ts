@@ -7,6 +7,7 @@ import { DifusionModule } from './difusion/difusion.module';
 import { DashBoardModule } from './dashboard/dashboard.module';
 
 import { PagesComponent } from './pages.component';
+import { ComponentesModule } from '../componentes/componentes.module';
 
 
 
@@ -19,7 +20,8 @@ import { PagesComponent } from './pages.component';
     RouterModule,
     SharedModule,
     DifusionModule,
-    DashBoardModule
+    DashBoardModule,
+    ComponentesModule
   ],
   exports:[
     PagesComponent
