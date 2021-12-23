@@ -1,0 +1,13 @@
+<form (ngSubmit)="buscar()" autocomplete="off" class="mb-0">
+   <!--  <div class="form-floating"> -->
+        <input  type="text" 
+                class="form-control" 
+                id="tb-fname" 
+                name="termino"
+                [(ngModel)]="termino"
+                (input)="teclaPrecionada()"
+                placeholder="Municipio">
+                
+        <!-- <label for="tb-fname">Municipio</label> -->
+   <!--  </div> -->
+</form>

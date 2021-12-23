@@ -7,7 +7,7 @@
                        <div class="service-item text-center pt-3 rounded-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >
                            <div class="p-4">
                                <div class="rounded-circle">
-                                   <i class="fa fa-3x fa-chart-line text-azul mb-4"></i>
+                                    <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-chart-line text-azul mb-4"></i></a>
                                </div>
                                <h4 class="mb-3">Medición Institucional</h4>
                                <br>
@@ -19,7 +19,7 @@
                    <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.3s">
                        <div class="service-item text-center pt-3 rounded-3">
                            <div class="p-4">
-                               <i class="fa fa-3x fa-file-alt text-azul mb-4"></i>
+                                    <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-file-alt text-azul mb-4"></i></a>
                                <h4 class="mb-3">Taller Participativo</h4>
                                <span> Socializacion de indicadores, analisis DOFA y conclusiones</span>
                            </div>
@@ -28,7 +28,7 @@
                    <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.5s">
                        <div class="service-item text-center pt-3 rounded-3">
                            <div class="p-4">
-                               <i class="fa fa-3x fa-edit text-azul mb-4"></i>
+                                <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-edit text-azul mb-4"></i></a>
                                <h4 class="mb-3">Planes de acción</h4>
                                <span> Resultado de los 16 municipios de los talleres de validacion</span>
                            </div>
@@ -48,7 +48,7 @@
                        <div class="service-item text-center pt-3 rounded-3" >
                            <div class="p-4">
                                <div class="rounded-circle">
-                                   <i class="fa fa-3x fa-users text-azul mb-4"></i>
+                                <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-users text-azul mb-4"></i></a>
                                </div>
                                <h4 class="mb-3">Socialización y difusión</h4>
                               <span>Eventos del proyecto Fortalecimiento de Capacidades Institucionales</span>
@@ -58,7 +58,9 @@
                    <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.3s">
                        <div class="service-item text-center pt-3 rounded-3">
                            <div class="p-4">
-                               <i class="fa fa-3x fa-handshake text-azul mb-4"></i>
+                               <div  class="rounded-circle">
+                                   <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-handshake text-azul mb-4"></i></a>
+                               </div> 
                                <h4 class="mb-3">Cualificación gestión pública</h4>
                                <span>Jornadas de formacion para la generacion de capacidades institucionales</span>                            
                            </div>
@@ -67,7 +69,7 @@
                    <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.5s">
                        <div class="service-item text-center pt-3 rounded-3">
                            <div class="p-4">
-                               <i class="fa fa-3x fa-toolbox text-azul mb-4"></i>
+                            <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-toolbox text-azul mb-4"></i></a>
                                <h4 class="mb-3">Caja de herramientas</h4>
                                <br>
                                <span>Elaboracion y suministro de material didactico</span>
@@ -80,4 +82,5 @@
        </div>
      
    </div>
-    <!-- Service Start -->
+    <!-- Modal para descarga de archivos -->
+    <app-modaldescarga></app-modaldescarga>

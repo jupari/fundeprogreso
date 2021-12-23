@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { iMunicipios, Municipios } from 'src/app/core/mocks/municipios';
 import { ModalDescargaArchivoService } from 'src/app/core/services/componentes/modal-descargaarchivos.service';
+import { iMunicipios, Municipios } from 'src/app/core/mocks/municipios';
 
-declare function registerInit():any;
+
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: [
-    './register.component.css',
-    '../../../assets/plugins/register-steps/steps.css',
-    '../../../assets/css/pages/register3.css'
-  ]
+  selector: 'app-modaldescarga',
+  templateUrl: './modaldescarga.component.html',
+  styleUrls: ['./modaldescarga.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class ModaldescargaComponent implements OnInit {
 
   constructor(public modaDescargaArchivoS: ModalDescargaArchivoService) { }
   termino:string='';
@@ -22,8 +18,9 @@ export class RegisterComponent implements OnInit {
   mostrarResultados:boolean=false
 
   ngOnInit(): void {
-    registerInit();
+    
   }
+
 
   cerrarModal(){
     this.modaDescargaArchivoS.cerrarModal()

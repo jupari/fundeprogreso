@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { DeployComponent } from './deploy/deploy.component';
 import { PublicpagesComponent } from './publicpages.component';
+import { ComponentesModule } from '../componentes/componentes.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PublicpagesComponent } from './publicpages.component';
   imports: [
     CommonModule,
     RouterModule,
-    PsharedModule
+    PsharedModule,
+    ComponentesModule
   ]
 
 })

@@ -1,0 +1,90 @@
+<div class="fondo-modal-imagen animated fadeIn fast"
+    [class.ocultar]="modaDescargaArchivoS.ocultarModal">
+    <!-- sample modal content -->
+    <div id="verticalcenter" 
+         class="modal" 
+         tabindex="-1" 
+         role="dialog" 
+         aria-labelledby="vcenter" 
+         aria-hidden="true" 
+         style="display: block;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="vcenter">Modal Heading</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <app-buscar-mcipios 
+                            (onEnter)="buscar($event)"
+                            (ondebounce)="BuscarMcipio($event)"
+                            [termino]="termino">
+                    </app-buscar-mcipios> 
+                    <ul class="list-group mt-0" *ngIf="mostrarSugerencia">
+                        <li class="list-group-item list-group-item-action" 
+                            *ngFor="let municipio of MunicipiosSugeridos" 
+                            (click)="buscar( municipio.nombre )">
+                            {{municipio.nombre}}
+                        </li>
+                    </ul>
+
+                    <div class="table-responsive mt-3" *ngIf="mostrarResultados">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-nowrap text-center">Doc</th>
+                                    <th>Título</th>
+                                    <th class="text-nowrap text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="../../../../assets/images/img3.jpg" 
+                                        alt="imagen" 
+                                        style="width: 30px;height: 30px;">
+                                    </td>
+                                    <td>Deshmukh</td>
+                                    <td class="text-nowrap text-center">
+                                        <a href="#" data-toggle="tooltip" data-original-title="Descargar" title="Descarga" class="text-info">
+                                            <i class="fas fa-download" text-info m-r-10 style="font-size:25px;" ></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><img src="../../../../assets/images/img1.jpg" 
+                                        alt="imagen" 
+                                        style="width: 30px;height: 30px;"></td>
+                                    <td>Deshmukh</td>
+                                    <td class="text-nowrap text-center">
+                                        <a href="#" data-toggle="tooltip" data-original-title="Descargar" title="Descarga" class="text-info">
+                                            <i class="fas fa-download" text-info m-r-10 style="font-size:25px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center"><img src="../../../../assets/images/img2.jpg" 
+                                        alt="imagen" 
+                                        style="width: 30px;height: 30px;"></td>
+                                    <td>Sanghani</td>
+                                    <td class="text-nowrap text-center">
+                                        <a href="#" data-toggle="tooltip" data-original-title="Descargar" title="Descarga" class="text-info">
+                                            <i class="fas fa-download" text-info m-r-10  style="font-size:25px;"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                                    
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info waves-effect text-white" (click)="cerrarModal()">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </div>
+    <!-- /.modal-dialog -->
+</div>

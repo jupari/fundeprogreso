@@ -47,8 +47,7 @@ export class BroadcrumbsComponent implements  OnDestroy, OnInit {
                 filter((event:ActivationEnd)=> event.snapshot.firstChild===null),
                 map((event:ActivationEnd)=>event.snapshot.data)
              );*/
-
-    return this.router.events
+   return this.router.events
           .pipe(
             filter(event=>event instanceof ActivationEnd),
             filter((event:any)=>event.snapshot.firstChild===null),

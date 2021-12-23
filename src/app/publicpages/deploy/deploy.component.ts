@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalDescargaArchivoService } from 'src/app/core/services/componentes/modal-descargaarchivos.service';
 
 @Component({
   selector: 'app-deploy',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeployComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalDescargaArchivo: ModalDescargaArchivoService) { 
+
+  }
+
+  
 
   ngOnInit(): void {
+  }
+
+  descarArchivo(ev:any){
+    this.modalDescargaArchivo.abrirModal();
   }
 
 }
