@@ -18,6 +18,8 @@ const baseUrl = environment.base_url;
 export class AuthService
 {
     private _authenticated: boolean = false;
+    private _rol:string='';
+    private _usuario:string='';
 
     /**
      * Constructor
@@ -42,6 +44,17 @@ export class AuthService
         return localStorage.getItem('token') ?? '';
     }
 
+    get autenticado():boolean {
+        return this._authenticated;
+    }
+
+    get rol():string{
+        return this._rol;
+    }
+
+    get usuario():string{
+        return this._usuario;
+    }
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
@@ -78,12 +91,15 @@ export class AuthService
         return this._httpClient.post(`${ baseUrl }/usuarios/login`,formData)
                 .pipe(
                     tap((resp:any)=>{
-
-                           this.accessToken    = resp.token
-
-                           this._authenticated = true
-
-                           localStorage.setItem('expiracion', resp.expiracion)    
+                           if(resp.token){
+                               this.accessToken    = resp.token
+                               this._authenticated = true
+                               this._rol = resp.rol; 
+                               this._usuario=resp.email;    
+                               localStorage.setItem('expiracion', resp.expiracion)  
+                               localStorage.setItem('menu', JSON.stringify(resp.menu))  
+                               localStorage.setItem('email', JSON.stringify(resp.email))  
+                           }
                         }
                     )
                 )
@@ -94,7 +110,7 @@ export class AuthService
      */
      signInUsingToken():Observable<boolean>
      {
-         const token = localStorage.getItem('token')
+         const token = localStorage.getItem('token') || '';
 
          // Renew token
          return this._httpClient.get(`${ baseUrl }/usuarios/validate`, {
@@ -102,27 +118,21 @@ export class AuthService
                     'Authorization': `Bearer ${token}`
                 }
         }).pipe(
-            
             switchMap( (resp:any) => {
-
-                if (resp.token){
-                    this.accessToken    =   resp.token
-
-                    this._authenticated =   true 
-                }else{
-                    this._router.navigate(['/sign-in']);
-                    localStorage.removeItem('token')
-                    this._authenticated =   false 
-                }
-                return of(true)
+                this.accessToken    =   resp.token
+                this._rol = resp.rol; 
+                this._usuario=resp.email;    
+                this._authenticated =   true 
+                localStorage.setItem('expiracion', resp.expiracion)  
+                localStorage.setItem('menu', JSON.stringify(resp.menu)) 
+                localStorage.setItem('email', JSON.stringify(resp.email))  
+                return of(true);
             }),
             catchError(() => {
-                this._router.navigate(['/sign-in']);
+                  this._router.navigateByUrl('/login');
                 return of(false)
             }),
-            
         );
-      
      }
  
      /**
@@ -132,7 +142,16 @@ export class AuthService
      {
          // Remove the access token from the local storage
          localStorage.removeItem('token');
- 
+         // Remove el menu
+         localStorage.removeItem('menu');
+        // Remove el titulo
+        localStorage.removeItem('titulo');
+        // Remove el titulo
+        localStorage.removeItem('subtitulo');
+        // Remove el titulo
+        localStorage.removeItem('expiracion');
+
+        localStorage.removeItem('email');
          // Set the authenticated flag to false
          this._authenticated = false;
  

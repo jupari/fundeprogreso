@@ -8,6 +8,8 @@ import { DashBoardModule } from './dashboard/dashboard.module';
 
 import { PagesComponent } from './pages.component';
 import { ComponentesModule } from '../componentes/componentes.module';
+import { PerfilComponent } from './usuarios/perfil/perfil.component';
+import { UsuariosModule } from './usuarios/usuarios.module';
 
 
 
@@ -21,7 +23,8 @@ import { ComponentesModule } from '../componentes/componentes.module';
     SharedModule,
     DifusionModule,
     DashBoardModule,
-    ComponentesModule
+    ComponentesModule,
+    UsuariosModule
   ],
   exports:[
     PagesComponent
