@@ -12,10 +12,9 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class LoginComponent implements OnInit {
 
 
-  @ViewChild('signInNgForm')
-  signInNgForm!: NgForm;
+  @ViewChild('signInNgForm') signInNgForm!: NgForm;
 
-  signInForm: FormGroup;
+  public signInForm: FormGroup;
   showAlert: boolean = false;
 
   constructor(private router: Router,
@@ -33,21 +32,14 @@ export class LoginComponent implements OnInit {
    }
 
  
-
-
   ngOnInit(): void {
     
 
   }
 
-  submit(){
-    this.router.navigateByUrl('/admin');
-  }
-
   signIn(): void
   {
       const {email,rememberMe} = this.signInForm.value
-      console.log(email)
       // Return if the form is invalid
       if ( this.signInForm.invalid )
       {
@@ -63,35 +55,37 @@ export class LoginComponent implements OnInit {
        this._authService.signIn(this.signInForm.value)
           .subscribe(
               (resp:any) => {
-                  if (email){
-                      localStorage.setItem('user',email);
+                console.log('login',resp)
+                if (resp.ok){
+                  if (rememberMe){
+                    localStorage.setItem('user',email);
                   }else{
-                      localStorage.removeItem('user');
+                    localStorage.removeItem('user');  
                   }
-                  
-                  // Set the redirect url.
-                  // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
-                  // to the correct page after a successful sign in. This way, that url can be set via
-                  // routing file and we don't have to touch here.
-                  const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/admin';
-                  console.log(redirectURL)
-                  // Navigate to the redirect url
-                 this._router.navigateByUrl(redirectURL);
-
+                  this._router.navigateByUrl('/admin');
+                }else{
+                  this.signInForm.enable();
+                  this.showAlert=true;
+                }
               },
-              (response) => {
-                  console.log(response)
+              (error) => {
+                console.log('error',error);
                   // Re-enable the form
                   this.signInForm.enable();
-
-                  // Reset the form
-                  this.signInNgForm.resetForm();
-
-             
-                  // Show the alert
                   this.showAlert = true;
               }
           );
   }
 
+  validarCampos(campo:string){
+    return this.signInForm.controls[campo].errors && this.signInForm.controls[campo].touched
+  }
+
+  mostrarAlerta(){
+    
+      this.showAlert=false;
+    
+  }
+
+ 
 }

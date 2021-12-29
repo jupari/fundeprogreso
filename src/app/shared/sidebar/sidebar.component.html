@@ -8,25 +8,11 @@
                 <div class="user-profile">
                     <div class="user-pro-body">
                         <div><img src="../../../assets/images/users/avatar.png" alt="user-img" class="img-circle"></div>
-                        <div class="dropdown">
-                            <a href="javascript:void(0)" class="dropdown-toggle u-dropdown link hide-menu" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuario<span class="caret"></span></a>
-                            <div class="dropdown-menu animated fadeIn fast">
-                                <!-- text-->
-                                <a routerLink="/admin/perfil" class="dropdown-item"><i class="ti-user"></i> Perfil</a>
-                                <!-- text
-                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>-->
-                                <!-- text-
-                                <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>-->
-                               
-                                <!-- text-->
-                                <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a> --> -->
-                                <!-- text-->
-                                <!-- <div class="dropdown-divider"></div> -->
-                                <!-- text-->
-                                <a routerLink="/public/home" class="dropdown-item"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
-                                <!-- text-->
-                            </div>
+                        <div class="text-center">
+                            <p class="capitalizacion hide-menu mb-0" >{{ usuario | lowercase }}</p>
+                            <p class="capitalizacion hide-menu">{{  rol | lowercase  }}</p>
                         </div>
+                        
                     </div>
                 </div>
                 <!-- Sidebar navigation-->
