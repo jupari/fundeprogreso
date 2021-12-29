@@ -12,8 +12,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 export class LoginComponent implements OnInit {
 
 
-  @ViewChild('signInNgForm')
-  signInNgForm!: NgForm;
+  @ViewChild('signInNgForm') signInNgForm!: NgForm;
 
   public signInForm: FormGroup;
   showAlert: boolean = false;
@@ -80,6 +79,12 @@ export class LoginComponent implements OnInit {
 
   validarCampos(campo:string){
     return this.signInForm.controls[campo].errors && this.signInForm.controls[campo].touched
+  }
+
+  mostrarAlerta(){
+    
+      this.showAlert=false;
+    
   }
 
  
