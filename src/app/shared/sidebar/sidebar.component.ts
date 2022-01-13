@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationMenu } from 'src/app/core/interfaces/NavigationMenu';
+import { Perfil } from 'src/app/core/interfaces/perfil';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { ApiService } from 'src/app/mock-api/navigation/api.service';
 
 
 declare function sidebarMenuInit():any;
@@ -15,13 +15,16 @@ export class SidebarComponent implements OnInit {
 
   menuItems:NavigationMenu[]|undefined;
 
+  perfil:Perfil=this.authService.perfil;
+
+  imagenBD:string = this.authService.perfil.imagen || '../../../../assets/images/avatar.png';
 
   /* constructor(private menuNavigation: ApiService ) { 
     this.menuItems = this.menuNavigation.getMenuNavigation();
   } */
 
-  constructor(private authService:AuthService) {
-    this.menuItems =localStorage.getItem('menu')? JSON.parse(localStorage.getItem('menu')!): [];  
+  constructor(public authService:AuthService) {
+    this.menuItems = localStorage.getItem('menu')? JSON.parse(localStorage.getItem('menu')!): [];  
   }
 
   usuario:string = '';

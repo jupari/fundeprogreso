@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
        this._authService.signIn(this.signInForm.value)
           .subscribe(
               (resp:any) => {
-                console.log('login',resp)
                 if (resp.ok){
                   if (rememberMe){
                     localStorage.setItem('user',email);
@@ -69,7 +68,6 @@ export class LoginComponent implements OnInit {
                 }
               },
               (error) => {
-                console.log('error',error);
                   // Re-enable the form
                   this.signInForm.enable();
                   this.showAlert = true;

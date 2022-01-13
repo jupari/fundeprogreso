@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, switchMap,tap,map } from 'rxjs/operators';
 import { LoginForm } from '../../interfaces/login-form';
+import { Perfil } from '../../interfaces/perfil';
 
 
 const baseUrl = environment.base_url;
@@ -20,6 +21,8 @@ export class AuthService
     private _authenticated: boolean = false;
     private _rol:string='';
     private _usuario:string='';
+    private _perfil:Perfil={};
+
 
     /**
      * Constructor
@@ -28,7 +31,10 @@ export class AuthService
         private _httpClient: HttpClient,
         private _router: Router
     )
-    {
+    { 
+        this.consultaPerfil(this.usuario).subscribe(res=>{
+            this._perfil=res;
+        });
     }
 
     /**
@@ -53,8 +59,19 @@ export class AuthService
     }
 
     get usuario():string{
-        return this._usuario;
+        return localStorage.getItem('email') || ''
     }
+
+    get token(): string{
+        return localStorage.getItem('token') || '';
+    }
+
+    get perfil():Perfil{
+       
+        return this._perfil;
+       
+    }
+
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
@@ -98,7 +115,7 @@ export class AuthService
                                this._usuario=resp.email;    
                                localStorage.setItem('expiracion', resp.expiracion)  
                                localStorage.setItem('menu', JSON.stringify(resp.menu))  
-                               localStorage.setItem('email', JSON.stringify(resp.email))  
+                               localStorage.setItem('email', resp.email)  
                            }
                         }
                     )
@@ -110,12 +127,11 @@ export class AuthService
      */
      signInUsingToken():Observable<boolean>
      {
-         const token = localStorage.getItem('token') || '';
 
          // Renew token
          return this._httpClient.get(`${ baseUrl }/usuarios/validate`, {
              headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${this.token}`
                 }
         }).pipe(
             switchMap( (resp:any) => {
@@ -125,7 +141,7 @@ export class AuthService
                 this._authenticated =   true 
                 localStorage.setItem('expiracion', resp.expiracion)  
                 localStorage.setItem('menu', JSON.stringify(resp.menu)) 
-                localStorage.setItem('email', JSON.stringify(resp.email))  
+                localStorage.setItem('email', resp.email)  
                 return of(true);
             }),
             catchError(() => {
@@ -178,8 +194,50 @@ export class AuthService
      {
          return this._httpClient.post('api/auth/unlock-session', credentials);
      }
+
      /**
-      * Check the authentication status
+      * Perfil del usuario
       */
+    consultaPerfil(usuario:string):Observable<Perfil>{
+        
+       return this._httpClient.get<Perfil>(`${ baseUrl }/perfiles/${usuario}`,{
+            headers:{
+                'Authorization':`Bearer ${ this.token }`
+            }
+        }).pipe(
+            map(res=>{
+                return res;
+            })
+        );
+    } 
+
+    crearPerfil(data:Perfil): Observable<any>{
+        return this._httpClient.post(`${ baseUrl }/perfiles`,data,{
+            headers:{
+                'Authorization':`Bearer ${ this.token }`
+            }
+        }).pipe(
+            map(res=>{
+                return res;
+            }
+                )
+        )
+     }
+
+    ActualizarPerfil(data:Perfil): Observable<any>{
+        console.log(data);
+        return this._httpClient.put(`${ baseUrl }/perfiles`,data,{
+            headers:{
+                'Authorization':`Bearer ${ this.token }`
+            }
+        }).pipe(
+            map(res=>{
+                return res;
+            }
+                )
+        )
+     }
+
+
 
 }
