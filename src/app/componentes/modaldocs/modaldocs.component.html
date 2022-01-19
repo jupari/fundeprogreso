@@ -1,1 +1,52 @@
-<p>modaldocs works!</p>
+<div class="fondo-modal-imagen animated fadeIn fast" 
+    [class.ocultar]="smodalDoc.ocultarModal">
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Archivos</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                   <form>
+                        <div class="form-group">
+                            <app-buscar-mcipios 
+                                (onEnter)="buscar($event)"
+                                (ondebounce)="BuscarMcipio($event)"
+                                [termino]="termino">
+                            </app-buscar-mcipios> 
+                            <ul class="list-group mt-0" *ngIf="mostrarSugerencia">
+                                <li class="list-group-item list-group-item-action" 
+                                    *ngFor="let municipio of MunicipiosSugeridos" 
+                                    (click)="buscar( municipio.nombre )">
+                                    {{municipio.nombre}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="form-label">Grupo</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="form-label">Título</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="form-label">Descripción</label>
+                            <textarea   class="form-control" id="recipient-name" rows="3"></textarea>
+                        </div>
+                        <app-dropzone (resFiles)="traerFiles( $event )" [configDropzone]="config"></app-dropzone>
+                    </form> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary waves-effect waves-light text-white">Guardar</button>
+                    <button type="button" class="btn btn-success waves-effect waves-light text-white">Nuevo</button>
+                    <button type="button"  class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>

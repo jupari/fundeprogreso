@@ -219,8 +219,7 @@ export class AuthService
         }).pipe(
             map(res=>{
                 return res;
-            }
-                )
+            })
         )
      }
 

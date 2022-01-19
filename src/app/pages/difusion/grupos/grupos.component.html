@@ -14,7 +14,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Código</th>
+                            <th>Orden</th>
                             <th>Grupo</th>
                             <th>Descripción</th>
                             <th>Icono</th>
@@ -22,71 +22,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Medición Institucional</td>
-                            <td>Actualización de resultados de indicadores</td>
-                            <th><i class="fa fa-3x fa-chart-line" style="font-size: 22px;"></i></th>
+                        <tr *ngFor="let grupo of grupos">
+                            <td>{{grupo.orden}}</td>
+                            <td>{{grupo.nombre_Grupo}}</td>
+                            <td>{{grupo.descripcion}}</td>
+                            <th><i [class]="grupo.icono" style="font-size: 22px;"></i></th>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Taller Participativo</td>
-                            <td>Socializacion de indicadores, analisis DOFA y conclusiones</td>
-                            <td>Socialización de indicadores, análisis DOFA y conclusiones</td>
-                            <th><i class="fa fa-3x fa-file-alt"  style="font-size: 22px;"></i></th>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Planes de acción</td>
-                            <td>Resultado de los 16 municipios de los talleres de validacion</td>
-                            <td>Resultado de los 16 municipios de los talleres de validación</td>
-                            <th><i class="fa fa-3x fa-edit"  style="font-size: 22px;"></i></th>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Socialización y difusión</td>
-                            <td>Eventos del proyecto Fortalecimiento de Capacidades Institucionales</td>
-                            <th><i class="fa fa-3x fa-users"  style="font-size: 22px;"></i></th>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Cualificación gestión pública</td>
-                            <td>Jornadas de formacion para la generacion de capacidades institucionales</td>
-                            <td>Jornadas de formación para la generación de capacidades institucionales</td>
-                            <th><i class="fa fa-3x fa-handshake"  style="font-size: 22px;"></i></th>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Caja de herramientas</td>
-                            <td>Elaboracion y suministro de material didactico</td>
-                            <td>Elaboración y suministro de material didáctico</td>
-                            <th><i class="fa fa-3x fa-toolbox"  style="font-size: 22px;"></i></th>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                       
                     </tbody>
                 </table>
             </div>
@@ -94,4 +39,4 @@
     </div>
 </div>
 
-<app-modalgrupos></app-modalgrupos>
+<app-modalgrupos (grupo)="actualizarGrupo( $event )"></app-modalgrupos>
