@@ -4,7 +4,7 @@
             <div class="form-row mb-3">
                 <button type="button"  
                         class="btn waves-effect waves-light btn-info"
-                        >
+                        (click)="mostrarModal()">
                     Nuevo Documento
                 </button>
             </div> 
@@ -14,12 +14,12 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Doc</th>
-                            <th>Código</th>
+                            <th>Archivo</th>
+                            <th class="d-none">reg</th>
                             <th>Título</th>
+                            <th>Descripción</th>
                             <th>Municipio</th>
                             <th>Grupo</th>
-                            <th>Obs</th>
                             <th class="text-nowrap">Acciones</th>
                         </tr>
                     </thead>
@@ -33,6 +33,7 @@
                             <td>Deshmukh</td>
                             <td>Prohaska</td>
                             <td>@Genelia</td>
+                            <td>otros</td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
@@ -45,6 +46,7 @@
                             <td>Deshmukh</td>
                             <td>Gaylord</td>
                             <td>@Ritesh</td>
+                            <td>otros</td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
@@ -57,6 +59,7 @@
                             <td>Sanghani</td>
                             <td>Gusikowski</td>
                             <td>@Govinda</td>
+                            <td>otros</td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
@@ -69,6 +72,7 @@
                             <td>Roshan</td>
                             <td>Rogahn</td>
                             <td>@Hritik</td>
+                            <td>otros</td>
                             <td class="text-nowrap">
                                 <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
                                 <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
@@ -83,4 +87,4 @@
     </div>
 </div>
 
-<app-modalgrupos></app-modalgrupos>
+<app-modaldocs></app-modaldocs>

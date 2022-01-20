@@ -18,7 +18,6 @@ export class UploadmagenService {
     ){
     try {
       const url = `${baseUrl}/perfiles/uploadimagenperfil`;
-      console.log(url);
       const formData= new FormData();
       formData.append('usuario',usuario);
       formData.append('imagen',archivo);

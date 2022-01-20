@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit {
  
   imagenBD:string = this.auth.perfil.imagen || '../../../../assets/images/foto-perfil.jpg';
 
-  perfilForm!:FormGroup;;
+  perfilForm!:FormGroup;
 
   get usuario():string{
     return localStorage.getItem('email')|| '';
