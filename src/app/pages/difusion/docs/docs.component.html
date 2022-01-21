@@ -15,7 +15,6 @@
                     <thead>
                         <tr>
                             <th>Archivo</th>
-                            <th class="d-none">reg</th>
                             <th>Título</th>
                             <th>Descripción</th>
                             <th>Municipio</th>
@@ -24,67 +23,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let doc of listadoDocumentos">
                             <td>
-                                <img src="../../../../assets/images/img3.jpg" 
+                                <img *ngIf="doc.archivo" src="../../../../assets/images/pdf-icon.png"
                                 alt="imagen" 
                                 style="width: 30px;height: 30px;">
                             </td>
-                            <td>Deshmukh</td>
-                            <td>Prohaska</td>
-                            <td>@Genelia</td>
-                            <td>otros</td>
+                            <td>{{doc.titulo}}</td>
+                            <td>{{doc.descripcion}}</td>
+                            <td>{{doc.codMunicipio}}</td>
+                            <td>{{doc.nombreGrupo}}</td>
                             <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
+                                <a (click)="editarDocumento(doc)" class="cursor" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
+                                <a (click)="eliminarDocumento(doc)" class="cursor" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td><img src="../../../../assets/images/img1.jpg" 
-                                alt="imagen" 
-                                style="width: 30px;height: 30px;"></td>
-                            <td>Deshmukh</td>
-                            <td>Gaylord</td>
-                            <td>@Ritesh</td>
-                            <td>otros</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="../../../../assets/images/img2.jpg" 
-                                alt="imagen" 
-                                style="width: 30px;height: 30px;"></td>
-                            <td>Sanghani</td>
-                            <td>Gusikowski</td>
-                            <td>@Govinda</td>
-                            <td>otros</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="../../../../assets/images/imac.png" 
-                                alt="imagen" 
-                                style="width: 30px;height: 30px;"></td>
-                            <td>Roshan</td>
-                            <td>Rogahn</td>
-                            <td>@Hritik</td>
-                            <td>otros</td>
-                            <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
-                            </td>
-                        </tr>
-                        
-                        
-                    </tbody>
+                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 
-<app-modaldocs></app-modaldocs>
+<app-modaldocs [documentoEditar]="documento"></app-modaldocs>

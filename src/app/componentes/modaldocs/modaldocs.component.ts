@@ -1,7 +1,16 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import { Documento } from 'src/app/core/interfaces/documento';
+
+import { Grupo } from 'src/app/core/interfaces/grupos';
+import { Iarchivo } from 'src/app/core/interfaces/iarchivo';
+
+
 import { iMunicipios,Municipios } from 'src/app/core/mocks/municipios';
 import { ModalDocService } from 'src/app/core/services/componentes/modal-doc.service';
+import { DocumentosService } from 'src/app/core/services/documentos/documentos.service';
+import { GrupoService } from 'src/app/core/services/grupos/grupos.service';
 
 declare function dropzone():any;
 
@@ -10,14 +19,26 @@ declare function dropzone():any;
   templateUrl: './modaldocs.component.html',
   styleUrls: ['./modaldocs.component.css']
 })
-export class ModaldocsComponent implements OnInit {
+export class ModaldocsComponent implements OnInit, OnChanges {
 
-  constructor(public  smodalDoc: ModalDocService) { }
+  constructor(public  smodalDoc: ModalDocService,
+              private fb: FormBuilder,
+              private grupoService:GrupoService,
+              private documentoService:DocumentosService) { }
+  
 
   termino:string='';
   MunicipiosSugeridos:iMunicipios[] = []; 
   mostrarSugerencia:boolean=false;
-  mostrarResultados:boolean=false
+  mostrarResultados:boolean=false;
+  limpiarDropZone:boolean=false;
+  archivo!:Iarchivo;
+  grupos:Grupo[]=[];  
+
+  @Input() documentoEditar!:Documento;
+
+  formDocs!:FormGroup;
+
   
   config: DropzoneConfigInterface = {
     clickable: true,
@@ -32,10 +53,45 @@ export class ModaldocsComponent implements OnInit {
 
   };
 
+  @ViewChild('selectgrupo') selectGrupo!:ElementRef;
+
 
 
   ngOnInit(): void {
+
+    //carga el dropzone
     dropzone();
+    //carga los grupos
+    this.listarGrupos();
+    this.formDocs= this.fb.group({
+        idDocumento:    [0],
+        idGrupo:        [0,[Validators.required]],
+        nombreGrupo:    [''],
+        idCia:          [0],
+        titulo:         ['',[Validators.required]],
+        descripcion:    ['',[Validators.required]],
+        codMunicipio:   ['',[Validators.required]],
+        archivo:        [''],
+        activo:         [1]     
+    })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.documentoEditar.currentValue){
+      this.cargarDocumento(this.documentoEditar);
+    }
+  }
+
+  onChangeSelect(ev:any){
+    console.log(ev.target[0].value);
+  }
+
+  //Listado de grupos
+  listarGrupos(){
+    this.grupoService.consultarGrupos()
+        .subscribe(res=>{
+          this.grupos=res;
+        })
   }
 
   cerrarModal(){
@@ -63,8 +119,66 @@ export class ModaldocsComponent implements OnInit {
   }
 
   traerFiles(archivo:File[]){
-    console.log(archivo);
+    const grupo = this.grupos.filter(res=>{return res.idGrupo==this.formDocs.get('idGrupo')?.value})
+    const municipio = this.termino
+    const idGrupo = this.formDocs.get('idGrupo')?.value;
+    const titulo = this.formDocs.get('titulo')?.value;
+
+    if (grupo==null || municipio==null){return;}
+    //almacena los valores en la variable para enviarla al servico
+    this.archivo = {
+      grupo:grupo[0].nombre_Grupo,
+      idGrupo:idGrupo,
+      titulo:titulo,
+      municipio:municipio,
+      file:archivo[0]
+    }
+    //Consumo el servicio
+    this.documentoService.uploadArchivo(this.archivo)
+          .then(res=>{
+            //seteo el formulario para enviarlo a guardar
+             this.formDocs.get('archivo')?.setValue(res);
+          })
+
+    
   }
 
+  guardarDocs(){
+      this.formDocs.get('codMunicipio')?.setValue(this.termino);
+      if(this.formDocs.invalid){return;}
+      this.documentoService.crearDocs(this.formDocs.value)
+            .subscribe(res=>{
+              this.limpiar();
+            })
+  }
+
+  cargarDocumento(doc:Documento){
+    if(this.formDocs.value){
+      this.formDocs.get('idDocumento')?.setValue(doc.idDocumento);
+      this.formDocs.get('idGrupo')?.setValue(doc.idGrupo);
+      this.formDocs.get('nombreGrupo')?.setValue(doc.nombreGrupo);
+      this.formDocs.get('titulo')?.setValue(doc.titulo);
+      this.formDocs.get('descripcion')?.setValue(doc.descripcion);
+      this.formDocs.get('codMunicipio')?.setValue(doc.codMunicipio);
+      this.termino=doc.codMunicipio;
+      this.formDocs.get('archivo')?.setValue(doc.archivo)
+
+    }
+  }
   	
+  limpiar(){
+    this.formDocs.get('idDocumento')?.setValue(0);
+    this.formDocs.get('idGRupo')?.setValue(0);
+
+    this.formDocs.get('titulo')?.setValue('');
+    this.formDocs.get('descripcion')?.setValue('');
+    this.formDocs.get('codMunicipio')?.setValue('');
+    this.formDocs.get('archivo')?.setValue('');
+    
+    this.limpiarDropZone = true;
+    this.termino='';
+    this.selectGrupo.nativeElement.options.item(0).selected = 'selected';
+
+  }
+ 
 }

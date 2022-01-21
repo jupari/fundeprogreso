@@ -7,6 +7,7 @@ import { Observable, of, throwError } from 'rxjs';
 import { catchError, switchMap,tap,map } from 'rxjs/operators';
 import { LoginForm } from '../../interfaces/login-form';
 import { Perfil } from '../../interfaces/perfil';
+import { UsuarioLogin } from '../../models/usuarioLogin';
 
 
 const baseUrl = environment.base_url;
@@ -22,6 +23,8 @@ export class AuthService
     private _rol:string='';
     private _usuario:string='';
     private _perfil:Perfil={};
+
+    public usuarioLogin!:UsuarioLogin; 
 
 
     /**

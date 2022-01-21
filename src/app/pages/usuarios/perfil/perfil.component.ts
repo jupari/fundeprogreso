@@ -72,8 +72,8 @@ export class PerfilComponent implements OnInit {
       this.imagenSubir = file;
       this.subirImagen();
     }
-
   }
+  
   subirImagen(){
     this.uploadImagen.actualizarFotoPerfil(this.imagenSubir,this.usuario)
         .then(resp=>{

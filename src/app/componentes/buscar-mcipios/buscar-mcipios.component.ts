@@ -1,4 +1,4 @@
-import { Component, OnInit, Output,EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -8,7 +8,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './buscar-mcipios.component.html',
   styleUrls: ['./buscar-mcipios.component.css']
 })
-export class BuscarMcipiosComponent implements OnInit {
+export class BuscarMcipiosComponent implements OnInit,OnChanges {
 
   @Output() onEnter:  EventEmitter<string> = new EventEmitter();
   @Output() ondebounce: EventEmitter<string> = new EventEmitter();
@@ -21,7 +21,6 @@ export class BuscarMcipiosComponent implements OnInit {
 
   constructor() { }
 
-
   ngOnInit() {
 
     this.debounce
@@ -31,6 +30,13 @@ export class BuscarMcipiosComponent implements OnInit {
       .subscribe(valor => {
       this.ondebounce.emit(valor);
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //si el termino viene vacion se limpia el control...
+   if(changes.termino.currentValue==""){
+     this.termino='';
+   } 
   }
 
   buscar(){

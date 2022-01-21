@@ -25,7 +25,6 @@ export class GrupoService {
       }
     }).pipe(
       map(res=>{
-         
         let listadoUser:Grupo[]=res;
         return listadoUser;
       })
@@ -36,6 +35,33 @@ export class GrupoService {
     return this.http.post(`${baseUrl}/grupos`,grupo,{
       headers:{
         'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(res=>{
+        return res;
+      })
+    )
+  }
+
+  actaulizarGrupo(grupo:Grupo): Observable<any>{
+    return this.http.put(`${baseUrl}/grupos`,grupo,{
+      headers:{
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(res=>{
+        return res;
+      })
+    )
+  }
+
+  eliminarGrupo(grupo:Grupo):Observable<any>{
+    return this.http.delete(`${baseUrl}/grupos/${grupo.idGrupo}`,{
+      headers:{
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       }

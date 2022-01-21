@@ -7,7 +7,7 @@
                 <!-- User Profile-->
                 <div class="user-profile">
                     <div class="user-pro-body">
-                        <div><img [src]="authService.perfil.imagen" alt="user-img" class="img-circle"></div>
+                        <div><img [src]="imagenBD" alt="user-img" class="img-circle"></div>
                         <div class="text-center">
                             <p class="capitalizacion hide-menu mb-0" >{{ this.authService.usuario | lowercase }}</p>
                             <p class="capitalizacion hide-menu">{{  this.authService.rol | lowercase  }}</p>

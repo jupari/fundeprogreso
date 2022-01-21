@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild,EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { DropzoneComponent, DropzoneDirective,
   DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 
@@ -8,15 +8,11 @@ import { DropzoneComponent, DropzoneDirective,
   templateUrl: './dropzone.component.html',
   styleUrls: ['./dropzone.component.css']
 })
-export class DropzoneCtrlComponent implements OnInit {
+export class DropzoneCtrlComponent implements OnInit, OnChanges {
 
   files: File[] = [];
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  
   public type: string = 'component';
 
   public disabled: boolean = false;
@@ -28,9 +24,12 @@ export class DropzoneCtrlComponent implements OnInit {
     errorReset: null,
     cancelReset: null,
     uploadMultiple:true,
+    dictRemoveFile: 'Eliminar archivo',
     addRemoveLinks:true
   };
 
+
+  @Input('limpiar') clear:boolean=false;
   @Output() resFiles: EventEmitter<File[]> = new EventEmitter()
 
 
@@ -39,6 +38,20 @@ export class DropzoneCtrlComponent implements OnInit {
 
   @ViewChild(DropzoneComponent, { static: false }) componentRef?: DropzoneComponent;
   @ViewChild(DropzoneDirective, { static: false }) directiveRef?: DropzoneDirective;
+
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //cuendo se limpia todo el formulario se aplica el reseteo de 
+    //el dropzone***************
+    if(changes.clear.currentValue){
+      this.resetDropzoneUploads();
+    }
+  }
 
 
   public toggleType(): void {
@@ -72,7 +85,8 @@ export class DropzoneCtrlComponent implements OnInit {
   }
 
   public onUploadInit(args: any): void {
-    //console.log('onUploadInit:', args);
+    //console.log('onUploadInit:', args.files);
+    //args.files=[]
   }
 
   public onUploadError(args: any): void {
@@ -85,10 +99,18 @@ export class DropzoneCtrlComponent implements OnInit {
   }
 
   public onRemove(arg: File):void{
+    
     this.files = this.files.filter((ev:File)=>{
        return ev.name!==arg.name
     })
     this.resFiles.emit(this.files);
+  }
+
+  public limpiar(arg:boolean){
+    if (arg){
+      this.files=[]
+      this.resFiles.emit(this.files);
+    }
   }
 
 }

@@ -28,8 +28,18 @@
                             <td>{{grupo.descripcion}}</td>
                             <th><i [class]="grupo.icono" style="font-size: 22px;"></i></th>
                             <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
+                                <a (click)="editarGrupo( grupo )"   
+                                    class="cursor" 
+                                    data-toggle="tooltip" 
+                                    data-original-title="Editar" 
+                                    title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> 
+                                </a>
+                                <a (click)="eliminarGrupo( grupo )" 
+                                    class="cursor" 
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar" 
+                                    title="Borrar"><i class="fas fa-trash-alt text-danger"></i> 
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -39,4 +49,4 @@
     </div>
 </div>
 
-<app-modalgrupos (grupo)="actualizarGrupo( $event )"></app-modalgrupos>
+<app-modalgrupos (grupo)="consultarGrupos()" [grupoEditar]="grupoEditar"></app-modalgrupos>

@@ -15,9 +15,9 @@ export class SidebarComponent implements OnInit {
 
   menuItems:NavigationMenu[]|undefined;
 
-  perfil:Perfil=this.authService.perfil;
+  perfil:Perfil={};
 
-  imagenBD:string = this.authService.perfil.imagen || '../../../../assets/images/avatar.png';
+  imagenBD:string =""; 
 
   /* constructor(private menuNavigation: ApiService ) { 
     this.menuItems = this.menuNavigation.getMenuNavigation();
@@ -36,6 +36,8 @@ export class SidebarComponent implements OnInit {
     
     this.usuario = this.authService.usuario;
     this.rol = this.authService.rol;
+    this.imagenBD=this.authService.perfil.imagen || '../../../../assets/images/avatar.png';
+    this.perfil= this.authService.perfil;
   
   }
 

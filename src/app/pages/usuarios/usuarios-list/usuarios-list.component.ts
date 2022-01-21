@@ -18,10 +18,11 @@ export class UsuariosListComponent implements OnInit {
 
   constructor(private userService:UsuariosService) { 
 
-    this.consultarUsuarios();
+   
   }
 
   ngOnInit(): void {
+    this.consultarUsuarios();
   }
 
   consultarUsuarios() {

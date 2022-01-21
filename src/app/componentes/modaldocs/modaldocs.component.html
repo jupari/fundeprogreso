@@ -9,7 +9,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
                 </div>
                 <div class="modal-body">
-                   <form>
+                   <form [formGroup]="formDocs" (submit)="guardarDocs()">
                         <div class="form-group">
                             <app-buscar-mcipios 
                                 (onEnter)="buscar($event)"
@@ -25,25 +25,39 @@
                             </ul>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="form-label">Grupo</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <select class="form-select" 
+                                    #selectgrupo 
+                                    (change)="onChangeSelect($event)"
+                                    aria-label="Default select example" 
+                                    formControlName="idGrupo">
+                                <option selected [ngValue]="0">Seleccionar el Grupo</option>
+                                <option *ngFor="let grupo of grupos" [ngValue]="grupo.idGrupo">{{grupo.nombre_Grupo}}</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="form-label">Título</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text" class="form-control" id="recipient-name" formControlName="titulo">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="form-label">Descripción</label>
-                            <textarea   class="form-control" id="recipient-name" rows="3"></textarea>
+                            <textarea   class="form-control" id="recipient-name" rows="3" formControlName="descripcion"></textarea>
                         </div>
-                        <app-dropzone (resFiles)="traerFiles( $event )" [configDropzone]="config"></app-dropzone>
+                        <div class="form-group">
+                            <label for="message-text" class="form-label">Archivo</label>
+                            <input class="form-control" disabled id="recipient-name" formControlName="archivo"/>
+                        </div>
+                        <app-dropzone   (resFiles)="traerFiles( $event )" 
+                                        [configDropzone]="config"
+                                        [limpiar]="limpiarDropZone">
+                        </app-dropzone>
+                        <div class="form-row text-end modal-footer">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-primary waves-effect waves-light text-white">Guardar</button>
+                                <button (click)="limpiar()" class="btn btn-success waves-effect waves-light text-white">Nuevo</button>
+                                <button type="button" class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
+                            </div>
+                        </div>
                     </form> 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary waves-effect waves-light text-white">Guardar</button>
-                    <button type="button" class="btn btn-success waves-effect waves-light text-white">Nuevo</button>
-                    <button type="button"  class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
-                    
                 </div>
             </div>
         </div>
