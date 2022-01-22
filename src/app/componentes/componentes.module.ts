@@ -11,6 +11,7 @@ import { ModaldescargaComponent } from './modaldescarga/modaldescarga.component'
 import { BuscarMcipiosComponent } from './buscar-mcipios/buscar-mcipios.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropzoneCtrlComponent } from './dropzone/dropzone.component';
+import { ModaluserComponent } from './modaluser/modaluser.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -26,6 +27,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ModaldescargaComponent,
     BuscarMcipiosComponent,
     DropzoneCtrlComponent,
+    ModaluserComponent,
 
   ],
   imports: [
@@ -41,6 +43,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ModaldescargaComponent,
     BuscarMcipiosComponent,
     DropzoneCtrlComponent,
+    ModaluserComponent,
+
 
   ],
   providers:[

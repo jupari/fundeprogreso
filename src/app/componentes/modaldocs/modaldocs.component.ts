@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import { Documento } from 'src/app/core/interfaces/documento';
@@ -33,9 +33,10 @@ export class ModaldocsComponent implements OnInit, OnChanges {
   mostrarResultados:boolean=false;
   limpiarDropZone:boolean=false;
   archivo!:Iarchivo;
+  mostrarIconoArchivo:boolean=false;
   grupos:Grupo[]=[];  
 
-  @Input() documentoEditar!:Documento;
+  
 
   formDocs!:FormGroup;
 
@@ -52,6 +53,10 @@ export class ModaldocsComponent implements OnInit, OnChanges {
     createImageThumbnails: true,
 
   };
+
+
+  @Input() documentoEditar!:Documento;
+  @Output() documentoRes: EventEmitter<Documento> = new EventEmitter();
 
   @ViewChild('selectgrupo') selectGrupo!:ElementRef;
 
@@ -72,6 +77,7 @@ export class ModaldocsComponent implements OnInit, OnChanges {
         descripcion:    ['',[Validators.required]],
         codMunicipio:   ['',[Validators.required]],
         archivo:        [''],
+        nombreArchivo:  [''],
         activo:         [1]     
     })
   }
@@ -137,10 +143,9 @@ export class ModaldocsComponent implements OnInit, OnChanges {
     this.documentoService.uploadArchivo(this.archivo)
           .then(res=>{
             //seteo el formulario para enviarlo a guardar
-             this.formDocs.get('archivo')?.setValue(res);
+            this.formDocs.get('archivo')?.setValue(res.rutaArchivo);
+            this.formDocs.get('nombreArchivo')?.setValue(res.nombreArchivo);
           })
-
-    
   }
 
   guardarDocs(){
@@ -149,6 +154,7 @@ export class ModaldocsComponent implements OnInit, OnChanges {
       this.documentoService.crearDocs(this.formDocs.value)
             .subscribe(res=>{
               this.limpiar();
+              this.documentoRes.emit(res);
             })
   }
 
@@ -161,24 +167,30 @@ export class ModaldocsComponent implements OnInit, OnChanges {
       this.formDocs.get('descripcion')?.setValue(doc.descripcion);
       this.formDocs.get('codMunicipio')?.setValue(doc.codMunicipio);
       this.termino=doc.codMunicipio;
+      this.formDocs.get('nombreArchivo')?.setValue(doc.nombreArchivo);
       this.formDocs.get('archivo')?.setValue(doc.archivo)
-
+      if(doc.archivo){
+        this.mostrarIconoArchivo = true;
+      }else{
+        this.mostrarIconoArchivo = false;
+      }
+      
     }
   }
   	
   limpiar(){
     this.formDocs.get('idDocumento')?.setValue(0);
     this.formDocs.get('idGRupo')?.setValue(0);
-
     this.formDocs.get('titulo')?.setValue('');
     this.formDocs.get('descripcion')?.setValue('');
     this.formDocs.get('codMunicipio')?.setValue('');
+    this.formDocs.get('nombreArchivo')?.setValue('');
     this.formDocs.get('archivo')?.setValue('');
     
     this.limpiarDropZone = true;
     this.termino='';
     this.selectGrupo.nativeElement.options.item(0).selected = 'selected';
-
+    this.mostrarIconoArchivo = false;
   }
  
 }

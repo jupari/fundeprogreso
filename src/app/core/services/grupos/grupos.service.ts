@@ -16,8 +16,6 @@ export class GrupoService {
   constructor(private http: HttpClient) {}
 
   consultarGrupos():Observable<Grupo[]>{
-   
-
    return this.http.get<Grupo[]>(`${baseUrl}/grupos`,{
       headers:{
         'Content-Type': 'application/json',

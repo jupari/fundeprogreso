@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { PerfilComponent } from './perfil/perfil.component';
 import { UsuariosListComponent } from './usuarios-list/usuarios-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModaluserComponent } from 'src/app/componentes/modaluser/modaluser.component';
+import { ComponentesModule } from 'src/app/componentes/componentes.module';
 
 
 
@@ -11,7 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentesModule
   ],
   exports:[PerfilComponent,UsuariosListComponent]
 })

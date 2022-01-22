@@ -44,7 +44,13 @@
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="form-label">Archivo</label>
-                            <input class="form-control" disabled id="recipient-name" formControlName="archivo"/>
+                            <div class="input-group">
+                                <img *ngIf="mostrarIconoArchivo" src="../../../assets/images/pdf-icon.png" alt="imagen-pdf" style="width: 8%;height: 8%;">
+                                <input class="form-control" id="recipient-name" formControlName="nombreArchivo"/>
+                            </div>
+                        </div>
+                        <div class="form-group" *ngIf="mostrarIconoArchivo">
+                            <label for="message-text" class="form-label">Para reemplazar el archivo seleccione uno nuevo.</label>
                         </div>
                         <app-dropzone   (resFiles)="traerFiles( $event )" 
                                         [configDropzone]="config"
@@ -54,7 +60,7 @@
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-primary waves-effect waves-light text-white">Guardar</button>
                                 <button (click)="limpiar()" class="btn btn-success waves-effect waves-light text-white">Nuevo</button>
-                                <button type="button" class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
+                                <button (click)="limpiar()" class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
                             </div>
                         </div>
                     </form> 

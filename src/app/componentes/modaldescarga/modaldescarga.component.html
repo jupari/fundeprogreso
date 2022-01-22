@@ -11,7 +11,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="vcenter">Archivos</h4>
+                    <h4 class="modal-title" id="vcenter">Archivos - {{grupo.nombre_Grupo}} </h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
                 </div>
                 <div class="modal-body">
@@ -39,52 +39,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let doc of listadoDocumentos">
                                     <td class="text-center">
-                                        <img src="../../../../assets/images/pdf-icon.png" 
-                                        alt="imagen" 
+                                        <img *ngIf="doc.archivo" src="../../../../assets/images/pdf-icon.png" 
+                                        alt="archivo-pdf" 
                                         style="width: 30px;height: 30px;">
                                     </td>
-                                    <td>Deshmukh</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur </td>
+                                    <td>{{ doc.titulo }}</td>
+                                    <td>{{ doc.descripcion }}</td>
                                     <td class="text-nowrap text-center">
-                                        <a href="#" data-toggle="tooltip" data-original-title="Descargar" title="Descarga" class="text-muted">
+                                        <a (click)="descargarArchivo(doc)" 
+                                            data-toggle="tooltip" 
+                                            data-original-title="Descargar" 
+                                            title="Descarga" 
+                                            class="text-muted cursor">
                                             <i class="fas fa-file-download" text-info m-r-10 style="font-size:25px;" ></i>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="text-center"><img src="../../../../assets/images/pdf-icon.png" 
-                                        alt="imagen" 
-                                        style="width: 30px;height: 30px;"></td>
-                                    <td>Deshmukh</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur </td>
-                                    <td class="text-nowrap text-center">
-                                        <a href="#" data-toggle="tooltip" data-original-title="Descargar" title="Descarga" class="text-muted">
-                                            <i class="fas fa-file-download" text-info m-r-10 style="font-size:25px;"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center"><img src="../../../../assets/images/img2.jpg" 
-                                        alt="imagen" 
-                                        style="width: 30px;height: 30px;"></td>
-                                    <td>Sanghani</td>
-                                    <td>Lorem ipsum dolor sit amet consectetur </td>
-                                    <td class="text-nowrap text-center">
-                                        <a href="#" data-toggle="tooltip" data-original-title="Descargar" title="Descarga" class="text-muted">
-                                            <i class="fas fa-file-download" text-info m-r-10  style="font-size:25px;"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                                    
-                                
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info waves-effect text-white" (click)="cerrarModal()">Close</button>
+                    <button class="btn btn-info waves-effect text-white" (click)="cerrarModal()">Close</button>
                 </div>
             </div>
             <!-- /.modal-content -->

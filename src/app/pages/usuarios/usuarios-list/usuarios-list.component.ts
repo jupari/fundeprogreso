@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuarios } from 'src/app/core/interfaces/usuarios';
+import { ModalService } from 'src/app/core/services/componentes/modal.service';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
 
 @Component({
@@ -11,18 +12,21 @@ export class UsuariosListComponent implements OnInit {
 
   private _listado!:Usuarios[];
 
-  get listado():Usuarios[]{
+  usuarioEditar!:Usuarios;
 
+  get listado():Usuarios[]{
     return this._listado;
   }
 
-  constructor(private userService:UsuariosService) { 
-
-   
+  constructor(private userService:UsuariosService,private modalService:ModalService) { 
   }
 
   ngOnInit(): void {
     this.consultarUsuarios();
+  }
+
+  mostrarModal(){
+    this.modalService.abrirModal();
   }
 
   consultarUsuarios() {
@@ -30,6 +34,11 @@ export class UsuariosListComponent implements OnInit {
          .subscribe(resp=>{
           this._listado=resp
          })
+  }
+
+  editarUsuario(user:Usuarios){
+    this.usuarioEditar=user;
+    this.mostrarModal();
   }
 
 }

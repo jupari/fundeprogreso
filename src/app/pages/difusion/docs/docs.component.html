@@ -26,7 +26,7 @@
                         <tr *ngFor="let doc of listadoDocumentos">
                             <td>
                                 <img *ngIf="doc.archivo" src="../../../../assets/images/pdf-icon.png"
-                                alt="imagen" 
+                                alt="archivo-pdf" 
                                 style="width: 30px;height: 30px;">
                             </td>
                             <td>{{doc.titulo}}</td>
@@ -45,4 +45,4 @@
     </div>
 </div>
 
-<app-modaldocs [documentoEditar]="documento"></app-modaldocs>
+<app-modaldocs [documentoEditar]="documento" (documentoRes)="consultarDocumento()"></app-modaldocs>

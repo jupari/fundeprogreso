@@ -9,6 +9,11 @@ import { Iarchivo } from '../../interfaces/iarchivo';
 const baseUrl = environment.base_url;
 const token = localStorage.getItem('token');
 
+interface filtroDocs{
+  NomMunicipio:string;
+  IdGrupo:string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,7 +49,6 @@ export class DocumentosService {
   }
 
   //editarDocs(doc:Documento):Observable<any>{}
-
   eliminarDocs(doc:Documento):Observable<any>{
     return this.http.delete(`${baseUrl}/documentos/${doc.idDocumento}`,{
       headers:{
@@ -83,6 +87,20 @@ export class DocumentosService {
       return false;
       
     }
+  }
+
+  //consulta los documentos para todos, son publicos
+ 
+  documentosPublicos(filtro:filtroDocs):Observable<Documento[]>{
+    return this.http.post<Documento[]>(`${baseUrl}/documentospublicos`,filtro,{
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).pipe(
+      map(res=>{
+        return res;
+      })
+    )
   }
 
  

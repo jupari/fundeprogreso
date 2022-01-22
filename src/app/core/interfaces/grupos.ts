@@ -5,5 +5,6 @@ export interface Grupo{
     nombre_Grupo:string,
     descripcion:string,
     icono:string,
+    claseCSS:string,
     activo:boolean
 }

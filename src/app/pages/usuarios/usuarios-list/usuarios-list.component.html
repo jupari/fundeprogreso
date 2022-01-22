@@ -1,13 +1,13 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <div class="form-row mb-3">
+          <!--   <div class="form-row mb-3">
                 <button type="button"  
                         class="btn waves-effect waves-light btn-info"
                         >
                     Nuevo Usuario
                 </button>
-            </div> 
+            </div>  -->
             <h4 class="card-title">Usuarios</h4>
             <h6 class="card-subtitle">Consulta Todos los Usuarios creados.</h6>
             <div class="table-responsive">
@@ -17,17 +17,21 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Rol</th>
+                            <th>Activo</th>
                             <th class="text-nowrap">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of listado">
-                            <td>{{ item.NombreUsuario }}</td>
+                            <td>{{ item.NombreCompleto }}</td>
                             <td>{{ item.Email }}</td>
                             <td>{{ item.TipoRol }}</td>
+                            <td><i [ngClass]="item.activo
+                                                ?'fas fa-check-circle text-success'
+                                                :'fas fa-times-circle text-danger'"></i></td>
                             <td class="text-nowrap">
-                                <a href="#" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i> </a>
-                                <a href="#" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a>
+                                <a (click)="editarUsuario(item)"   class="cursor btn btn-outline-light btn-sm mr-2" data-toggle="tooltip" data-original-title="Editar" title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i></a>
+                                <!-- <a (click)="eliminarUsuario(item)" class="cursor" data-toggle="tooltip" data-original-title="Borrar" title="Borrar"><i class="fas fa-trash-alt text-danger"></i> </a> -->
                             </td>
                         </tr>
                        
@@ -38,3 +42,5 @@
         </div>
     </div>
 </div>
+
+<app-modaluser [userEditar]="usuarioEditar" (resUsuario)="consultarUsuarios() "></app-modaluser>

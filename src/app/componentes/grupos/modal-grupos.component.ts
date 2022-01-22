@@ -26,6 +26,7 @@ export class ModalGruposComponent implements OnInit, OnChanges {
   { 
      
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
     if(changes.grupoEditar.currentValue){
       this.grupoEditar=changes.grupoEditar.currentValue;

@@ -6,6 +6,7 @@ export interface Documento{
     titulo:         string;
     descripcion:    string;
     codMunicipio:   string;
+    nombreArchivo:  string;
     archivo:        string;
     activo:         boolean;    
 }

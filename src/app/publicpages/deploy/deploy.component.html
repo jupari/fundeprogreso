@@ -1,87 +1,113 @@
+<div class="fondo">
+    <div class="container-xxl py-5" *ngIf="grupo1">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo1">
+                    <div [class]="item.claseCSS" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+                        <div class="p-4">
+                            <div class="rounded-circle">
+                                 <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.icono?item.icono:''"></i></a>
+                            </div>
+                            <h4 class="mb-3">{{ item.nombre_Grupo }}</h4>
+                            <br>
+                            <span>  {{item.descripcion}}  </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+    <!-- Service Start -->
+    <div class="container-xxl py-5" *ngIf="grupo2">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo2">
+                     <div [class]="item.claseCSS" >
+                         <div class="p-4">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.nombre_Grupo }}</h4>
+                             <span>{{item.descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </div>
 
-   <div class="fondo">
-       <div class="container-xxl py-5">
-           <div class="container">
-               <div class="row g-4">
-                   <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s">
-                       <div class="service-item-one text-center pt-3 rounded-3" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                           <div class="p-4">
-                               <div class="rounded-circle">
-                                    <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-chart-line text-item-one mb-4"></i></a>
-                               </div>
-                               <h4 class="mb-3">Medición Institucional</h4>
-                               <br>
-                               <span> Actualización de resultados de indicadores</span>
-                               
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.3s">
-                       <div class="service-item-two text-center pt-3 rounded-3">
-                           <div class="p-4">
-                                    <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-file-alt text-item-two mb-4"></i></a>
-                               <h4 class="mb-3">Taller Participativo</h4>
-                               <span> Socialización de indicadores, análisis DOFA y conclusiones</span>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.5s">
-                       <div class="service-item-three text-center pt-3 rounded-3">
-                           <div class="p-4">
-                                <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-edit text-item-three mb-4"></i></a>
-                               <h4 class="mb-3">Planes de Acción</h4>
-                               <span> Resultado de los 16 municipios de los talleres de validación</span>
-                           </div>
-                       </div>
-                   </div>
-                  
-               </div>
-           </div>
-       </div>
-       <!-- Service End -->
-    
-       <!-- Service Start -->
-       <div class="container-xxl py-5">
-           <div class="container">
-               <div class="row g-4">
-                   <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s">
-                       <div class="service-item-four text-center pt-3 rounded-3" >
-                           <div class="p-4">
-                               <div class="rounded-circle">
-                                <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-users text-item-four mb-4"></i></a>
-                               </div>
-                               <h4 class="mb-3">Socialización y Difusión</h4>
-                              <span>Eventos del proyecto Fortalecimiento de Capacidades Institucionales</span>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.3s">
-                       <div class="service-item-five text-center pt-3 rounded-3">
-                           <div class="p-4">
-                               <div  class="rounded-circle">
-                                   <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-handshake text-verdeo mb-4"></i></a>
-                               </div> 
-                               <h4 class="mb-3">Cualificación Gestión Pública</h4>
-                               <span>Jornadas de formación para la generación de capacidades institucionales</span>                            
-                           </div>
-                       </div>
-                   </div>
-                   <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.5s">
-                       <div class="service-item-six text-center pt-3 rounded-3">
-                           <div class="p-4">
-                            <a (click)="descarArchivo($event)" class="cursor"><i class="fa fa-3x fa-toolbox text-item-six mb-4"></i></a>
-                               <h4 class="mb-3">Caja de Herramientas</h4>
-                               <br>
-                               <span>Elaboración y suministro de material didáctico</span>
-                           </div>
-                           
-                       </div>
-                   </div>
-                  
-               </div>
-           </div>
-       </div>
-     
-   </div>
-    <!-- Modal para descarga de archivos -->
-    <app-modaldescarga></app-modaldescarga>
+    <div class="container-xxl py-5" *ngIf="grupo3">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo3">
+                     <div [class]="item.claseCSS" >
+                         <div class="p-4">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.nombre_Grupo }}</h4>
+                         <span>{{item.descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="container-xxl py-5" *ngIf="grupo4">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo4">
+                     <div [class]="item.claseCSS" >
+                         <div class="p-4">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.nombre_Grupo }}</h4>
+                         <span>{{item.descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="container-xxl py-5" *ngIf="grupo5">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo5">
+                     <div [class]="item.claseCSS" >
+                         <div class="p-4">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.nombre_Grupo }}</h4>
+                         <span>{{item.descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <div class="container-xxl py-5" *ngIf="grupo6">
+         <div class="container">
+             <div class="row g-4">
+                 <div class="col-lg-4 col-sm-6 animated fadeInUp" data-wow-delay="0.1s" *ngFor="let item of grupo6">
+                     <div [class]="item.claseCSS" >
+                         <div class="p-4">
+                             <div class="rounded-circle">
+                             <a (click)="descarArchivo(item)" class="cursor"><i [class]="item.icono"></i></a>
+                             </div>
+                             <h4 class="mb-3">{{ item.nombre_Grupo }}</h4>
+                         <span>{{item.descripcion}}</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+</div>
+ <!-- Modal para descarga de archivos -->
+ <app-modaldescarga [grupo]="grupoEnviar"></app-modaldescarga>
