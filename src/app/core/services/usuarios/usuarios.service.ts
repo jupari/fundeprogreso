@@ -65,5 +65,17 @@ export class UsuariosService {
     )
   }
 
+   /* Validacion del email revisar que no este creado */
+   validarEmail(email:string):Observable<any>{
+    return this.http.get(`${ baseUrl }/perfiles/usuarios/validatoremail/${email}`,{
+        headers:{
+           'Content-Type': 'application/json'
+        }
+    }).pipe(
+        map(res=>{
+            return JSON.stringify(res);
+        })
+    )
+}
 
 }

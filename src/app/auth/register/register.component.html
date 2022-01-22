@@ -18,11 +18,17 @@
                     <fieldset>
                         <h2 class="fs-title">Informacón Personal</h2>
                         <h3 class="fs-subtitle">Primer Paso</h3>
+                        <span *ngIf="validarCampos('nombreCompleto')" class="form-text text-danger">*El nombre no tiene el formato correcto y es obligatorio</span>
                         <input type="text" name="fname" placeholder="Nombre Completo" formControlName="nombreCompleto" />
+                        <span *ngIf="validarCampos('documentoIdentidad')" class="form-text text-danger">*Este campo es obligatorio</span>
                         <input type="text" name="lname" placeholder="Documento de Identidad" formControlName="documentoIdentidad" />
+                        <span *ngIf="validarCampos('telefono')" class="form-text text-danger">*Este campo es obligatorio</span>
                         <input type="phone" name="phone" placeholder="Teléfono" formControlName="telefono" />
+                        <p *ngIf="validarCampos('direccion')" class="form-text text-danger">*Este campo es obligatorio</p>
                         <input type="address" placeholder="Dirección" formControlName="direccion"/>
-                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                        
+
+                        <button type="button" name="next"  [disabled]="validarSiguientePaso1()"  class="next action-button">Siguiente</button>
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">Municipio de Procedencia</h2>
@@ -39,23 +45,35 @@
                                 {{municipio.nombre}}
                             </li>
                         </ul>
+                        <p *ngIf="validarMunicipioVacio()" class="form-text text-info">El campo Municipio es obligatorio</p>
                         <input type="button" name="previous" class="previous action-button" value="Anterior" />
-                        <input type="button" name="next" class="next action-button" value="Siguiente" />
+                        <input type="button" name="next"  [disabled]="validarMunicipioVacio()" class="next action-button" value="Siguiente" />
                     </fieldset>
                     <fieldset>
                         <h2 class="fs-title">Configuración de la Cuenta</h2>
                         <h3 class="fs-subtitle">Diligencie los campos para la creación de la cuenta.</h3>
                         <input type="text" name="email" placeholder="Email" formControlName="email" />
+                        <span *ngIf="validarCampos('email')" class="form-text text-danger">{{ emailErrors }}</span>
                         <input type="password" name="pass" placeholder="Password" formControlName="clave" />
+                        <span class="form-text text-danger"
+                            *ngIf="validarCampos('clave')">
+                            La contraseña debe de ser mayor de 6 caracteres.
+                         </span>
                         <input type="password" name="cpass" placeholder="Confirm Password" formControlName="validar" />
+                        <p *ngIf="validarCampos('validar')" 
+                            class="form-text text-danger" >
+                            *La verificación del password es incorrecta
+                        </p>
                         <input type="button" name="previous" class="previous action-button" value="Anterior" />
-                        <button type="submit" class="action-button">Enviar</button>
+                        <button type="submit" [disabled]="formRegistro.pending" class="action-button">Enviar</button>
                     </fieldset>
                 </form>
                 <div class="clear"></div>
             </div>
         </div>
     </section>
+
+    
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->

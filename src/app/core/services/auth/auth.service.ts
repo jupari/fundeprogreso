@@ -198,6 +198,8 @@ export class AuthService
          return this._httpClient.post('api/auth/unlock-session', credentials);
      }
 
+    
+
      /**
       * Perfil del usuario
       */

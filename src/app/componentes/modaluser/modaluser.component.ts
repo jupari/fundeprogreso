@@ -84,18 +84,7 @@ export class ModaluserComponent implements OnInit, OnChanges {
 
   }
 
-  claveNoValida(){
-    const clave1 = this.formUser.get('claveUsuario')?.value;
-    const clave2 = this.formUser.get('validar')?.value;
-
-    if((clave1!==clave2) && this.formSubmitted)
-    {
-      return true;
-    }else{
-      return false;
-    }
-
-  }
+  
 
   limpiar(){
     this.formUser.get('usuario')?.setValue('');
