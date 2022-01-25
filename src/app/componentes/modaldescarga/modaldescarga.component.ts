@@ -40,6 +40,7 @@ export class ModaldescargaComponent implements OnInit,OnChanges {
     
   }
 
+  
 
   ngOnChanges(changes: SimpleChanges): void {
     

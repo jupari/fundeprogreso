@@ -43,6 +43,7 @@ export class RegisterComponent implements OnInit {
 
   formRegistro!:FormGroup; 
 
+  
   ngOnInit(): void {
     registerInit();
      this.formRegistro = this.fb.group({
