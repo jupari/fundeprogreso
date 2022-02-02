@@ -11,12 +11,12 @@
                     <!-- progressbar -->
                     <ul id="eliteregister">
                         <li class="active">Información Personal</li>
-                        <li>A qué Municipio Pertenece?</li>
+                        <li>¿ A qué Municipio Pertenece?</li>
                         <li>Configuración de la Cuenta </li>
                     </ul>
                     <!-- fieldsets -->
                     <fieldset>
-                        <h2 class="fs-title">Informacón Personal</h2>
+                        <h2 class="fs-title">Información Personal</h2>
                         <h3 class="fs-subtitle">Primer Paso</h3>
                         <span *ngIf="validarCampos('nombreCompleto')" class="form-text text-danger">*El nombre no tiene el formato correcto y es obligatorio</span>
                         <input type="text" name="fname" placeholder="Nombre Completo" formControlName="nombreCompleto" />
@@ -25,7 +25,7 @@
                         <span *ngIf="validarCampos('telefono')" class="form-text text-danger">*Este campo es obligatorio</span>
                         <input type="phone" name="phone" placeholder="Teléfono" formControlName="telefono" />
                         <p *ngIf="validarCampos('direccion')" class="form-text text-danger">*Este campo es obligatorio</p>
-                        <input type="address" placeholder="Dirección" formControlName="direccion"/>
+                        <input type="address" placeholder="Dirección" formControlName="dirección"/>
                         
 
                         <button type="button" name="next"  [disabled]="validarSiguientePaso1()"  class="next action-button">Siguiente</button>
