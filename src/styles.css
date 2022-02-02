@@ -3,3 +3,10 @@
 .cursor{
     cursor: pointer;
 }
+
+.color-gris{
+    display: block;
+    height: 40px;
+    text-align: center;
+    background-color: blue;
+}

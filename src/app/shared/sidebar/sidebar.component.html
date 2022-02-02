@@ -17,10 +17,10 @@
                 </div>
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav" *ngFor="let menu of menuItems">
-                        <li class="nav-small-cap" >--- {{ menu.menu }}</li>
-                        <li> 
-                            <a class="has-arrow waves-effect waves-dark" aria-expanded="false" href="javascript:void(0)">
+                    <ul id="sidebarnav" >
+                        <!-- <li class="nav-small-cap" >--- {{ menu.menu }}</li> -->
+                        <li *ngFor="let menu of menuItems" routerLinkActive="active"> 
+                            <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
                                 <i [ngClass]="menu.icon"></i>
                                 <span class="hide-menu">
                                     {{menu.menu}}

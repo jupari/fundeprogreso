@@ -12,7 +12,6 @@ import { PublicpagesModule } from './publicpages/publicpages.module';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +22,8 @@ import { PublicpagesModule } from './publicpages/publicpages.module';
     AppRoutingModule,
     AuthModule,
     PagesModule,
-    PublicpagesModule
+    PublicpagesModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

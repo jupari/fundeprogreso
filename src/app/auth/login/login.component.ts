@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
+declare function customInitFunction():any;
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ export class LoginComponent implements OnInit {
 
 
   @ViewChild('signInNgForm') signInNgForm!: NgForm;
+
+  spinner:boolean=false;
 
   public signInForm: FormGroup;
   showAlert: boolean = false;
@@ -33,17 +36,19 @@ export class LoginComponent implements OnInit {
 
  
   ngOnInit(): void {
-    
+    customInitFunction();
 
   }
 
   signIn(): void
   {
+      this.spinner=true;
       const {email,rememberMe} = this.signInForm.value
       // Return if the form is invalid
       if ( this.signInForm.invalid )
       {
-          return;
+        this.spinner=false;
+        return;
       }
       // Disable the form
       this.signInForm.disable();
@@ -62,15 +67,18 @@ export class LoginComponent implements OnInit {
                     localStorage.removeItem('user');  
                   }
                   this._router.navigateByUrl('/admin');
+                  this.spinner=false;
                 }else{
                   this.signInForm.enable();
                   this.showAlert=true;
+                  this.spinner=false;
                 }
               },
               (error) => {
                   // Re-enable the form
                   this.signInForm.enable();
                   this.showAlert = true;
+                  this.spinner=false;
               }
           );
   }

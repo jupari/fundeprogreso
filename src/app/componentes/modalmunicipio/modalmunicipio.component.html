@@ -1,0 +1,36 @@
+<div class="fondo-modal-imagen animated fadeIn fast" [class.ocultar]="modalService.ocultarModal">
+    <!-- sample modal content -->
+    <div id="responsive-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Grupos</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
+                </div>
+                <div class="modal-body">
+                    <form   [formGroup]="formMunicipio" 
+                            (submit)="guardarMunicipio()">
+                        <div class="form-group">
+                            <label for="recipient-name" class="form-label">Nombre Municipio</label>
+                            <input type="text" formControlName="nombre" class="form-control" >
+                        </div>
+                        <div class="form-row text-end modal-footer">
+                            <div class="btn-group">
+                                <button type="submit" 
+                                        class="btn btn-primary waves-effect waves-light text-white mr-1">Guardar</button>
+                                <button type="button" 
+                                        class="btn btn-success waves-effect waves-light text-white mr-1"
+                                        (click)="limpiar()">Nuevo</button>
+                                <button type="button"  
+                                        class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</div>
+
+

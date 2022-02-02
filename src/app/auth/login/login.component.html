@@ -1,12 +1,12 @@
- <!-- ============================================================== -->
+    <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== 
+    <!-- ============================================================== -->
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
             <p class="loader__label">Fundepacifico</p>
         </div>
-    </div>-->
+    </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -54,6 +54,12 @@
                             </button>
                         </div>
                     </div>
+                    <div class="spinner-border text-info" 
+                         role="status" 
+                         *ngIf="spinner"
+                          >
+                        <span class="sr-only">Loading...</span>
+                    </div>
                     <!-- <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
                             <div class="social">
@@ -68,6 +74,7 @@
                         </div>
                     </div>
                 </form>
+               
                 <form class="form-horizontal" id="recoverform" action="index.html">
                     <div class="form-group ">
                         <div class="col-xs-12">
