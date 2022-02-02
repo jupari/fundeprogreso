@@ -4,6 +4,8 @@ import { Perfil } from 'src/app/core/interfaces/perfil';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { UploadmagenService } from 'src/app/core/services/cargararchivos/uploadmagen.service';
 
+declare function customInitFunction():any;
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -32,6 +34,7 @@ export class PerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    customInitFunction();
      this.perfilForm=this.fb.group({
       nombrecompleto:       [this.perfil.nombreCompleto,      [Validators.required]],
       documentoidentidad:   [this.perfil.documentoIdentidad,  [Validators.required]],

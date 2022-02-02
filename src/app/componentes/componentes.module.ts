@@ -12,6 +12,10 @@ import { BuscarMcipiosComponent } from './buscar-mcipios/buscar-mcipios.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropzoneCtrlComponent } from './dropzone/dropzone.component';
 import { ModaluserComponent } from './modaluser/modaluser.component';
+import { ModalcapacitacionComponent } from './modalcapacitacion/modalcapacitacion.component';
+import { ModaldocenteComponent } from './modaldocente/modaldocente.component';
+import { ModalmunicipioComponent } from './modalmunicipio/modalmunicipio.component';
+import { ModaltemaComponent } from './modaltema/modaltema.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -28,6 +32,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     BuscarMcipiosComponent,
     DropzoneCtrlComponent,
     ModaluserComponent,
+    ModalcapacitacionComponent,
+    ModaldocenteComponent,
+    ModalmunicipioComponent,
+    ModaltemaComponent,
 
   ],
   imports: [
@@ -44,7 +52,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     BuscarMcipiosComponent,
     DropzoneCtrlComponent,
     ModaluserComponent,
-
+    ModalcapacitacionComponent,
+    ModaldocenteComponent,
+    ModalmunicipioComponent,
+    ModaltemaComponent,
 
   ],
   providers:[

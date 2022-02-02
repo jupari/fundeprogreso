@@ -3,6 +3,8 @@ import { Grupo } from 'src/app/core/interfaces/grupos';
 import { ModalDescargaArchivoService } from 'src/app/core/services/componentes/modal-descargaarchivos.service';
 import { GrupoService } from 'src/app/core/services/grupos/grupos.service';
 
+declare function customInitFunction():any;
+
 @Component({
   selector: 'app-deploy',
   templateUrl: './deploy.component.html',
@@ -38,6 +40,7 @@ export class DeployComponent implements OnInit {
   filas:number[]=[1,2,3,4,5,6];
 
   ngOnInit(): void {
+    customInitFunction();
     this.consultarGrupos();
    
   }
