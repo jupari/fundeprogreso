@@ -5,6 +5,7 @@ import { TemasComponent } from './temas/temas.component';
 import { ComponentesModule } from 'src/app/componentes/componentes.module';
 import { TemasxmunicipioComponent } from './temasxmunicipio/temasxmunicipio.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExamenComponent } from './examen/examen.component';
 
 
 
@@ -13,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MunicipioComponent,
     TemasComponent,
     TemasxmunicipioComponent,
+    ExamenComponent,
   ],
   imports: [
     CommonModule,

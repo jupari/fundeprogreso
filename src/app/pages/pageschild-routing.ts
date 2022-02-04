@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CapacitacionAdminComponent } from './capacitacion/capacitacion-admin/capacitacion-admin.component';
 import { CapacitacionComponent } from './capacitacion/capacitacion-participante/capacitacion.component';
+import { ExamenComponent } from './configuracion/examen/examen.component';
 import { MunicipioComponent } from './configuracion/municipio/municipio.component';
 import { TemasComponent } from './configuracion/temas/temas.component';
 import { TemasxmunicipioComponent } from './configuracion/temasxmunicipio/temasxmunicipio.component';
@@ -23,6 +24,7 @@ const child:Routes = [
    { path:'configuracion/municipios', component:MunicipioComponent,data: { titulo: 'configuración',subtitulo:'municipio' } },
    { path:'configuracion/temas', component:TemasComponent,data: { titulo: 'configuración',subtitulo:'temas' } },
    { path:'configuracion/temasxmunicipio', component:TemasxmunicipioComponent,data: { titulo: 'configuración',subtitulo:'temas por municipio' } },
+   { path:'configuracion/examen', component:ExamenComponent,data: { titulo: 'configuración',subtitulo:'examen' } },
 ]
 
 @NgModule({

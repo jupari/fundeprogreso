@@ -1,0 +1,56 @@
+
+ <!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <div class="loader">
+        <div class="loader__figure"></div>
+        <p class="loader__label">Fundepacifico</p>
+    </div>
+</div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Examen</h4>
+            <h6 class="card-subtitle">Consulta Todos los Examenes creados.</h6>
+            <div class="form-row mb-3">
+                <button type="button"  
+                        (click)="abrirModal()"
+                        class="btn waves-effect waves-light btn-info"
+                        >
+                    Nuevo Examen
+                </button>
+            </div> 
+            
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>examen</th>
+                            <th class="text-nowrap">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let examen of examenes">
+                            <td>{{examen.nombre}}</td>
+                            <td class="text-nowrap">
+                                <a  class="cursor btn btn-outline-light btn-sm mr-2" 
+                                    (click)="editar(examen)"
+                                    data-toggle="tooltip" 
+                                    data-original-title="Editar" 
+                                    title="Editar"><i class="fas fa-pencil-alt text-success m-r-10"></i>
+                                </a>
+                                <a  class="cursor" 
+                                    (click)="eliminar(examen)"
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar" 
+                                    title="Borrar"><i class="fas fa-trash-alt text-danger"></i> 
+                                </a> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
