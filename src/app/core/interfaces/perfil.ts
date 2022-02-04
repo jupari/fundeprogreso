@@ -7,6 +7,7 @@ export interface Perfil {
     telefono?: string;
     direccion?: string;
     email?: string;
+    idMunicipio?:number;
     municipio?: string;
     usuario?: string;
     imagen?: string;

@@ -14,6 +14,7 @@ export interface Usuarios{
     DocumentoIdentidad?  :string;
     Telefono?            :string;
     Direccion?           :string;
+    IdMuncipio?          :number;
     Municipio?           :string;
     idRol?               :string;
     TipoRol?             :string;

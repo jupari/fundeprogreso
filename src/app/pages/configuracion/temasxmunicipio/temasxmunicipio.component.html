@@ -1,0 +1,68 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row col-md-12">
+                <div class="col-md-5">
+                    <form   [formGroup]="formTemasx" 
+                            (submit)="guardarTemasx()">
+                    <div class="form-group">
+                        <label for="recipient-name" class="form-label">Municipio</label>
+                        <app-buscar-mcipios (terminoSeleccionado)="terminoSeleccionado($event)"
+                                            (idMunicipioSeleccionado)="idMunicipioSeleccionado($event)"
+                                            [actualizar]="actualizar"
+                        ></app-buscar-mcipios>
+                    </div>
+                    <div class="form-group">
+                            <label for="recipient-name" class="form-label">Temas</label>
+                            <select class="form-select" formControlName="idTema" >
+                                <option selected>Seleccione el Tema</option>
+                                <option *ngFor="let tema of temas" [value]="tema.idTema">{{tema.tema}}</option>
+                            </select>                                
+                        </div>
+                        <div class="form-row text-end">
+                            <div class="btn-group">
+                                <button type="submit" 
+                                        class="btn btn-success waves-effect waves-light text-white mr-1">
+                                        <i class="fas fa-plus"></i>
+                                        {{botonAdicionar}}
+                                </button>
+                                <button type="button" 
+                                        class="btn btn-warning waves-effect waves-light text-white mr-1"
+                                        (click)="limpiar()">Nuevo</button>
+                                <button type="button"  
+                                        class="btn btn-default waves-effect" (click)="cerrarModal()">Cerrar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="alert alert-success mt-2 p-1" role="alert" *ngIf="show">
+                        {{mensaje}}
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Temas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mt of municipiosTemas">
+                                <td>{{mt.tema}}</td>
+                                <td class="text-nowrap">
+                                    <a  class="cursor" 
+                                        (click)="eliminarTemario(mt)"
+                                        data-toggle="tooltip" 
+                                        data-original-title="Borrar" 
+                                        title="Borrar"><i class="fas fa-trash-alt text-danger"></i> 
+                                    </a> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+

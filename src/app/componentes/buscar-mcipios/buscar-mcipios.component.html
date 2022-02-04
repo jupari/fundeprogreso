@@ -6,5 +6,13 @@
                 name="termino"
                 [(ngModel)]="termino"
                 (input)="teclaPrecionada()"
-                placeholder="Municipio">
+                placeholder="Municipio"/>
+        <ul class="list-group mt-0" *ngIf="mostrarSugerencia">
+                <li class="list-group-item list-group-item-action" 
+                    *ngFor="let municipio of MunicipiosSugeridos" 
+                    (click)="seleccionar( municipio )"
+                    (keyup.enter)="seleccionar( municipio)">
+                    {{municipio.nombre}}
+                </li>
+        </ul>
 </form>

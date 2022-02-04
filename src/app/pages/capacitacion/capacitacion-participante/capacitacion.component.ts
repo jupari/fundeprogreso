@@ -53,6 +53,7 @@ export class CapacitacionComponent implements OnInit {
   // ]
 
   eventos:Evento[]=[];
+  calEvent:ElementRef;
 
   optionsCalendario={};
 
@@ -94,7 +95,7 @@ export class CapacitacionComponent implements OnInit {
       dateClick: this.onDateClick.bind(this),
       events:this.eventos,
       eventClick:(calEvent:any, jsEvent:any, view:any)=>{
-        console.log(calEvent);
+        this.calEvent=calEvent;
         this.modalService.abrirModal()
       },
       eventDidMount: (info)=>{

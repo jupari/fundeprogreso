@@ -32,11 +32,7 @@ export class MunicipioService {
   }
 
   consultarMunicipios():Observable<Municipio[]> {
-    return this.http.get<Municipio[]>(`${baseUrl}/municipio`,{
-      headers:{
-        'Authorization': `Bearer ${token}`
-      }
-    }).pipe(
+    return this.http.get<Municipio[]>(`${baseUrl}/municipio`).pipe(
       map(res=>{
         const municipiosres:Municipio[]=res;
         return municipiosres;
@@ -45,11 +41,7 @@ export class MunicipioService {
   }
 
   municipioxId(id:number):Observable<Municipio>{
-    return this.http.get<Municipio>(`${baseUrl}/municipio/${id}`,{
-      headers:{
-        'Authorization':`Bearer ${token}`
-      }
-    }).pipe(
+    return this.http.get<Municipio>(`${baseUrl}/municipio/${id}`).pipe(
       map(res=>{
         return this._municipio=res;
       })

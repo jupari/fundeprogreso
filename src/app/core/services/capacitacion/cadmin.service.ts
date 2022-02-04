@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Evento } from '../../interfaces/evento';
-import { EventoBD } from '../../interfaces/eventoBD';
+import { EventoBD, ImagenEvento } from '../../interfaces/eventoBD';
+import { EventoMaterial } from '../../interfaces/eventoMaterial';
+import { EventoArchivo, EventoArchivoDisplay } from '../../interfaces/eventosarchivos';
 
 const baseUrl:string = environment.base_url;
 const token:string = localStorage.getItem('token');
@@ -65,8 +67,20 @@ export class CAdminService {
     )
   }
 
+  consultarEventoxId(idEvento:number):Observable<EventoMaterial>{
+    return this.http.get<EventoMaterial>(`${baseUrl}/eventos/${idEvento}`,{
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map((res)=>{
+          const evento:EventoMaterial=res;
+          return evento;
+      })
+    )
+  }
+
   guardarEvento(data:EventoBD):Observable<EventoBD>{
-    console.log(data);
     return this.http.post<EventoBD>(`${baseUrl}/eventos`,data,{
       headers:{
         'Authorization': `Bearer ${token}`
@@ -108,4 +122,117 @@ export class CAdminService {
     return date;
   }
 
+  //Eventos para guardar los archivos de los eventos
+  //{EVENTOSARCHIVOS CONTROLADOR}
+  //RUTA{api/archivoevento}
+
+  //sirve pora traer los archivos guardados por el evento
+  
+  guardarArchivos(archivo:EventoArchivo):Observable<any>{
+    return this.http.post<any>(`${baseUrl}/archivoevento`,archivo,{
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(res=>{
+        return res
+      })
+    )
+  }
+
+  async uploadArchivo(archivo:EventoArchivo){
+    try {
+      const url = `${baseUrl}/archivoevento/uploadarchivo`;
+      const formData= new FormData();
+      formData.append('idEvento',archivo.idEvento.toString());
+      formData.append('idTema',archivo.idTema.toString());
+      formData.append('idTemario',archivo.idTemario.toString());
+      formData.append('archivo',archivo.archivo.toString());
+      formData.append('nombreArchivo',archivo.nombreArchivo);
+      formData.append('titulo',archivo.titulo);
+      formData.append('descripcion',archivo.descripcion);
+      formData.append('file',archivo.file);
+
+  
+
+      const resp = await fetch( url, {
+        method:'POST',
+        headers:{
+          'Authorization': `Bearer ${token}`
+        },
+        body:formData
+      } );
+
+      const data = await resp.json();
+      return data;
+
+    } catch (error) {
+      console.log(error);
+      return false;
+      
+    }
+  }
+
+  async uploadArchivoEvento(archivo:ImagenEvento){
+    try {
+      const url = `${baseUrl}/eventos/uploadarchivo`;
+      const formData= new FormData();
+      formData.append('idEvento',archivo.idEvento.toString());
+      formData.append('imagen',archivo.imagen);
+
+  
+
+      const resp = await fetch( url, {
+        method:'POST',
+        headers:{
+          'Authorization': `Bearer ${token}`
+        },
+        body:formData
+      } );
+
+      const data = await resp.json();
+      return data;
+
+    } catch (error) {
+      console.log(error);
+      return false;
+      
+    }
+  }
+
+  consultarArchivosGuardados(idevento:number,idtema:number,idtemario:number):Observable<EventoArchivoDisplay[]>{
+    return this.http.get<EventoArchivoDisplay[]>(`${baseUrl}/archivoevento/${idevento}/${idtema}/${idtemario}`,{
+      headers:{
+        'Authorization': `Bearer ${token}` 
+      }
+    }).pipe(
+      map(res=>{
+        return res;
+      })
+    )
+  }
+
+  consultarArchivoGuardadosxTema(idevento:number):Observable<EventoArchivoDisplay[]>{
+    return this.http.get<EventoArchivoDisplay[]>(`${baseUrl}/archivoevento/${idevento}`,{
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(res=>{
+        return res;
+      })
+    )
+  }
+
+  EliminarArchivo(id:number):Observable<string>{
+    return this.http.delete(`${baseUrl}/archivoevento/${id}`,{
+      headers:{
+        'Authorization': `Bearer ${token}` 
+      }
+    }).pipe(
+      map(res=>{
+        return JSON.stringify(res);
+      })
+    )
+  }
 }

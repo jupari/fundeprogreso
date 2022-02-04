@@ -11,18 +11,8 @@
                 <div class="modal-body">
                    <form [formGroup]="formDocs" (submit)="guardarDocs()">
                         <div class="form-group">
-                            <app-buscar-mcipios 
-                                (onEnter)="buscar($event)"
-                                (ondebounce)="BuscarMcipio($event)"
-                                [termino]="termino">
+                            <app-buscar-mcipios (terminoSeleccionado)="terminoSeleccionado($event)">
                             </app-buscar-mcipios> 
-                            <ul class="list-group mt-0" *ngIf="mostrarSugerencia">
-                                <li class="list-group-item list-group-item-action" 
-                                    *ngFor="let municipio of MunicipiosSugeridos" 
-                                    (click)="buscar( municipio.nombre )">
-                                    {{municipio.nombre}}
-                                </li>
-                            </ul>
                         </div>
                         <div class="form-group">
                             <select class="form-select" 

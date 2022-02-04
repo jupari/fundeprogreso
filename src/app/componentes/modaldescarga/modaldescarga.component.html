@@ -15,19 +15,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
                 </div>
                 <div class="modal-body">
-                    <app-buscar-mcipios 
-                            (onEnter)="buscar($event)"
-                            (ondebounce)="BuscarMcipio($event)"
-                            [termino]="termino">
+                    <app-buscar-mcipios (terminoSeleccionado)="terminoSeleccionado($event)">
                     </app-buscar-mcipios> 
-                    <ul class="list-group mt-0" *ngIf="mostrarSugerencia">
-                        <li class="list-group-item list-group-item-action" 
-                            *ngFor="let municipio of MunicipiosSugeridos" 
-                            (click)="buscar( municipio.nombre )">
-                            {{municipio.nombre}}
-                        </li>
-                    </ul>
-
                     <div class="table-responsive mt-3" *ngIf="mostrarResultados">
                         <table class="table table-bordered">
                             <thead>

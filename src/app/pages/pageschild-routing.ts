@@ -4,6 +4,7 @@ import { CapacitacionAdminComponent } from './capacitacion/capacitacion-admin/ca
 import { CapacitacionComponent } from './capacitacion/capacitacion-participante/capacitacion.component';
 import { MunicipioComponent } from './configuracion/municipio/municipio.component';
 import { TemasComponent } from './configuracion/temas/temas.component';
+import { TemasxmunicipioComponent } from './configuracion/temasxmunicipio/temasxmunicipio.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DocsComponent } from './difusion/docs/docs.component';
 import { GruposComponent } from './difusion/grupos/grupos.component';
@@ -21,6 +22,7 @@ const child:Routes = [
    { path:'capacitacion/docente', component:CapacitacionAdminComponent,data: { titulo: 'capacitación',subtitulo:'docente' } },
    { path:'configuracion/municipios', component:MunicipioComponent,data: { titulo: 'configuración',subtitulo:'municipio' } },
    { path:'configuracion/temas', component:TemasComponent,data: { titulo: 'configuración',subtitulo:'temas' } },
+   { path:'configuracion/temasxmunicipio', component:TemasxmunicipioComponent,data: { titulo: 'configuración',subtitulo:'temas por municipio' } },
 ]
 
 @NgModule({

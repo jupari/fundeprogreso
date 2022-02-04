@@ -1,15 +1,16 @@
 export interface Evento{
-    id:string,
-    idTema?:string,
-    title:string,
-    start:Date,
-    end?:Date,
-    decription:string,
-    display?:string,
-    editable:boolean,
-    classNames?:string[],
-    url?:string,
+    id              :string,
+    idTema?         :string,
+    idMuncipio?     :number
+    title           :string,
+    start           :Date,
+    end?            :Date,
+    decription      :string,
+    display?        :string,
+    editable        :boolean,
+    classNames?     :string[],
+    url?            :string,
     backgroundColor?:string,
-    textColor?:string,
-    allDay?:boolean
+    textColor?      :string,
+    allDay?         :boolean
 }

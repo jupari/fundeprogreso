@@ -10,6 +10,7 @@ import { Evento } from 'src/app/core/interfaces/evento';
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import $ from 'jQuery';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-capacitacion-admin',
@@ -21,11 +22,14 @@ export class CapacitacionAdminComponent implements OnInit {
   eventos:any[]=[];
   optionsCalendario={};
   contador:number=0
+  idMunicipio:number=0
 
   @ViewChild('calendario') calendario:ElementRef;
 
   calEvent:ElementRef;
-  constructor(public modalService:ModalService,public cadmin:CAdminService) { }
+  constructor(public modalService:ModalService
+              ,public cadmin:CAdminService
+              ,public authService:AuthService) { }
 
   ngOnInit(): void {
     this.consultarEventos();
@@ -33,8 +37,11 @@ export class CapacitacionAdminComponent implements OnInit {
     setTimeout(() => {
       this.clickNext();  
     }, 2000);
+
+    
     
   }
+  
 
   opcionesCalendario(){
     this.optionsCalendario={
@@ -58,6 +65,7 @@ export class CapacitacionAdminComponent implements OnInit {
       events:this.cadmin.eventos,
       eventClick:(calEvent:any, jsEvent:any, view:any)=>{
         this.calEvent=calEvent;
+        this.idMunicipio=this.authService.perfil.idMunicipio
         this.modalService.abrirModal()
       }
     }
@@ -89,7 +97,7 @@ export class CapacitacionAdminComponent implements OnInit {
 
 
   onDateClick(ev:any){
-    console.log(ev);
+    //console.log(ev);
   }
   updateEvent(ev:any){}
   clickButton(ev:any){}

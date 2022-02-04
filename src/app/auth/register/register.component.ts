@@ -1,9 +1,7 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrearUsuario } from 'src/app/core/interfaces/usuarios';
-import { iMunicipios, Municipios } from 'src/app/core/mocks/municipios';
 import { ModalDescargaArchivoService } from 'src/app/core/services/componentes/modal-descargaarchivos.service';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
 import { ValidacionEmailService } from 'src/app/core/services/usuarios/validacio-email.service';
@@ -30,8 +28,6 @@ export class RegisterComponent implements OnInit {
 
 
   termino:string='';
-  MunicipiosSugeridos:iMunicipios[] = []; 
-  mostrarSugerencia:boolean=false;
   mostrarResultados:boolean=false
 
   //variable para establecer si el formulario fue enviado
@@ -55,6 +51,7 @@ export class RegisterComponent implements OnInit {
       telefono            : ['',[Validators.required]],
       direccion           : ['',[Validators.required]],
       email               : ['',[Validators.required,Validators.pattern(this.emailPattern)],[this.validacionEmailService]],
+      idMunicipio         : [''],
       municipio           : [''],
       usuario             : [''],
       rol                 : ['ASISTENTE'],
@@ -81,32 +78,20 @@ export class RegisterComponent implements OnInit {
             && this.formRegistro.get(nombreCampo)?.touched 
   }
 
-
-  buscar(termino:string){
-    this.mostrarSugerencia=false;
-    this.mostrarResultados=true
-    this.termino=termino;
+  terminoSeleccionado(ev:string){
+    this.termino=ev;
   }
 
-  BuscarMcipio(termino:string){
-    this.mostrarSugerencia=true;
-    if (termino==''){
-      this.mostrarSugerencia=false;
-      this.mostrarResultados=false;
-      this.MunicipiosSugeridos=[];  
-    }else{
-      this.MunicipiosSugeridos = Municipios.filter(valor=>
-              valor.nombre.toLocaleLowerCase().includes(termino.toLocaleLowerCase())
-            ).splice(0,7);
-    }
+  idMunicipioSeleccionado(ev:number){
+    this.formRegistro.get('idMunicipio').setValue(ev);
   }
 
   guardarRegistro(){
-
     if(this.formRegistro.invalid){
       this.formRegistro.markAsTouched();
       return;
     }
+    
     if(this.termino==""){return}
     //pone la variable de enviado en true y revisa las claves
     //que sean iguales
@@ -120,13 +105,13 @@ export class RegisterComponent implements OnInit {
       DocumentoIdentidad  :this.formRegistro.get('documentoIdentidad')?.value,
       Telefono            :this.formRegistro.get('telefono')?.value,
       Direccion           :this.formRegistro.get('direccion')?.value,
+      IdMuncipio          :this.formRegistro.get('idMunicipio')?.value,
       Municipio           :this.termino,
       idRol               :'0',
       TipoRol             :this.formRegistro.get('rol')?.value,
       activo              :true,
     }
     
-    console.log(usuario);
     this.usuarioService.crearUsuario(usuario)
           .subscribe(res=>{
             Swal.fire('Registro',JSON.stringify(res),'success');

@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="col-lg-9">
                         <div class="card-body b-l calender-sidebar">
                             <p-fullCalendar [events]="eventos" 
@@ -38,4 +38,4 @@
     </div>
 </div>
 
-<app-modaldocente (eventoGuardado)="consultarEventos()" [eventoEditar]="calEvent"></app-modaldocente>
+<app-modaldocente (eventoGuardado)="consultarEventos()" [eventoEditar]="calEvent" [idMunicipio]="idMunicipio"></app-modaldocente>

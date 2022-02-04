@@ -10,6 +10,7 @@ import { CapacitacionModule } from './capacitacion/capacitacion.module';
 
 import { PagesComponent } from './pages.component';
 import { ConfiguracionModule } from './configuracion/configuracion.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ConfiguracionModule } from './configuracion/configuracion.module';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule,
     SharedModule,
     DifusionModule,

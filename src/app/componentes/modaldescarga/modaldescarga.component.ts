@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ModalDescargaArchivoService } from 'src/app/core/services/componentes/modal-descargaarchivos.service';
-import { iMunicipios, Municipios } from 'src/app/core/mocks/municipios';
 import { DocumentosService } from 'src/app/core/services/documentos/documentos.service';
 import { Documento } from 'src/app/core/interfaces/documento';
 import { Grupo } from 'src/app/core/interfaces/grupos';
@@ -21,7 +20,6 @@ export class ModaldescargaComponent implements OnInit,OnChanges {
               private documentoService:DocumentosService) { }
  
   termino:string='';
-  MunicipiosSugeridos:iMunicipios[] = []; 
   mostrarSugerencia:boolean=false;
   mostrarResultados:boolean=false
   listadoDocumentos:Documento[]=[];
@@ -58,26 +56,9 @@ export class ModaldescargaComponent implements OnInit,OnChanges {
     this.mostrarResultados=false;
   }
 
-  buscar(termino:string){
-    this.mostrarSugerencia=false;
-    this.mostrarResultados=true
-    this.termino=termino;
+  terminoSeleccionado(ev:string){
+    this.termino=ev;
     this.traerDocumentoFiltro();
-   
-    
-  }
-
-  BuscarMcipio(termino:string){
-    this.mostrarSugerencia=true;
-    if (termino==''){
-      this.mostrarSugerencia=false;
-      this.mostrarResultados=false;
-      this.MunicipiosSugeridos=[];  
-    }else{
-      this.MunicipiosSugeridos = Municipios.filter(valor=>
-              valor.nombre.toLocaleLowerCase().includes(termino.toLocaleLowerCase())
-            ).splice(0,7);
-    }
   }
 
   traerDocumentoFiltro(){
@@ -89,8 +70,10 @@ export class ModaldescargaComponent implements OnInit,OnChanges {
     this.documentoService.documentosPublicos(filtro)
           .subscribe(res=>{
             if(res){
+              this.mostrarResultados=true; 
               this.listadoDocumentos=res;
             }else{
+              this.mostrarResultados=false;
               this.listadoDocumentos=[]
             }
             

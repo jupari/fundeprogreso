@@ -1,13 +1,21 @@
 export interface EventoBD{
-    IdEvento    :number;
-    IdCia       :number;
-    IdTema      :number;
-    Titulo      :string;
-    Descripcion :string;
-    Fecha_Ini   :Date;
-    echa_Fin    :Date;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-    TodoElDia   :number;
-    ColorEvento :string;
-    Imagen      :string;
-    Activo      :boolean;
+    idEvento        :number;
+    idCia           :number;
+    idMunicipio     :number;
+    idTema          :number;
+    titulo          :string;
+    descripcion     :string;
+    fecha_Ini       :Date;
+    fecha_Fin        :Date;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+    todoElDia       :number;
+    colorEvento     :string;
+    imagen          :string;
+    nombreArchivo   :string;
+    link            :string;
+    activo          :boolean;
+}
+
+export interface ImagenEvento{
+    idEvento        :number;
+    imagen          :File;
 }

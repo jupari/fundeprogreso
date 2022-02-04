@@ -5,31 +5,63 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Evento</h4>
+                    <h4 class="modal-title">Evento <span class="h3">{{evento.titulo}}</span></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true" (click)="cerrarModal()"></button>
                 </div>
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Capacitación</h4>
-                        <h6 class="card-subtitle">Visualizar el Objectivo <code></code></h6>
+                        <h6 class="card-subtitle">Visualizar el Objetivo</h6>
                         <!-- Nav tabs -->
                         <div class="vtabs">
                             <ul class="nav nav-tabs tabs-vertical" role="tablist">
-                                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home4" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Objectivos</span> </a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#profile4" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Material</span></a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#messages4" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Prueba</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#descripcion" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Objetivos</span> </a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#material" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Material</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#prueba" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Prueba</span></a> </li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div class="tab-pane active" id="home4" role="tabpanel">
-                                    <div class="p-20">
-                                        <img src="../../../assets/images/Objectivos.png" alt="Imagen Objectivos">
-                                        <h5>you can use it with the small code</h5>
-                                        <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a.</p>
+                                <div class="tab-pane active" id="descripcion" role="tabpanel">
+                                    <p class="h4">{{descripcion}}</p>
+                                    <a [href]="evento.link">{{evento.link}}</a>
+                                    <div class="p-2">
+                                        <img [src]="evento.imagen" alt="Imagen Objetivos">
                                     </div>
                                 </div>
-                                <div class="tab-pane p-20" id="profile4" role="tabpanel">Materia de la capacitación</div>
-                                <div class="tab-pane p-20" id="messages4" role="tabpanel">Pruba tu conocimiento</div>
+                                <div class="tab-pane" id="material" role="tabpanel">
+                                    <ol class="list-group">
+                                        <li *ngFor="let te of evento.temas" class="list-group-item list-group-flush h3">{{te.nombreTema}}
+                                            <ol>
+                                                <li *ngFor="let tm of te.temarios" class="list-group-item h4">{{tm.nombreTemario}}
+                                                    <ol class="list-group">
+                                                        <li *ngFor="let arc of tm.archivos" class="list-group-item">
+                                                            <div class="col-md-12" 
+                                                                style="display: flex;justify-content: space-between;align-items: center;">
+                                                                <div class="text-center">
+                                                                    <img *ngIf="arc.archivo" src="../../../assets/images/pdf-icon.png" 
+                                                                    alt="archivo-pdf" 
+                                                                    style="width: 30px;height: 30px;">
+                                                                </div>    
+                                                                <div class="text-center h5">{{arc.nombreArchivo}}</div>
+                                                                <div style="display:flex;justify-content:center;align-items: center;margin: 5px;">
+                                                                    <a (click)="descargarArchivo(arc)" 
+                                                                        data-toggle="tooltip" 
+                                                                        data-original-title="Descargar" 
+                                                                        title="Descarga" 
+                                                                        class="text-muted cursor d-block">
+                                                                        <i class="fas fa-file-download" text-info m-r-10 style="font-size:25px;" ></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+
+                                    </ol>
+                                </div>
+                                <div class="tab-pane p-20" id="prueba" role="tabpanel">Pruba tu conocimiento</div>
                             </div>
                         </div>
                     </div>

@@ -7,7 +7,6 @@ import { Grupo } from 'src/app/core/interfaces/grupos';
 import { Iarchivo } from 'src/app/core/interfaces/iarchivo';
 
 
-import { iMunicipios,Municipios } from 'src/app/core/mocks/municipios';
 import { ModalDocService } from 'src/app/core/services/componentes/modal-doc.service';
 import { DocumentosService } from 'src/app/core/services/documentos/documentos.service';
 import { GrupoService } from 'src/app/core/services/grupos/grupos.service';
@@ -28,8 +27,8 @@ export class ModaldocsComponent implements OnInit, OnChanges {
   
 
   termino:string='';
-  MunicipiosSugeridos:iMunicipios[] = []; 
-  mostrarSugerencia:boolean=false;
+
+
   mostrarResultados:boolean=false;
   limpiarDropZone:boolean=false;
   archivo!:Iarchivo;
@@ -88,6 +87,7 @@ export class ModaldocsComponent implements OnInit, OnChanges {
     }
   }
 
+
   onChangeSelect(ev:any){
     console.log(ev.target[0].value);
   }
@@ -100,29 +100,15 @@ export class ModaldocsComponent implements OnInit, OnChanges {
         })
   }
 
+  terminoSeleccionado(ev:string){
+    this.termino=ev;
+  }
+
   cerrarModal(){
     this.smodalDoc.cerrarModal()
   }
 
-  buscar(termino:string){
-    
-    this.mostrarSugerencia=false;
-    this.mostrarResultados=true
-    this.termino=termino;
-  }
-
-  BuscarMcipio(termino:string){
-    this.mostrarSugerencia=true;
-    if (termino==''){
-      this.mostrarSugerencia=false;
-      this.mostrarResultados=false;
-      this.MunicipiosSugeridos=[];  
-    }else{
-      this.MunicipiosSugeridos = Municipios.filter(valor=>
-              valor.nombre.toLocaleLowerCase().includes(termino.toLocaleLowerCase())
-            ).splice(0,7);
-    }
-  }
+   
 
   traerFiles(archivo:File[]){
     const grupo = this.grupos.filter(res=>{return res.idGrupo==this.formDocs.get('idGrupo')?.value})

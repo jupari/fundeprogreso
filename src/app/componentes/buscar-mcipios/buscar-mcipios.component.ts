@@ -1,6 +1,8 @@
-import { Component, OnInit, Output,EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { Municipio } from 'src/app/core/interfaces/municipio';
+import { MunicipioService } from 'src/app/core/services/configuracion/municipio.service';
 
 
 @Component({
@@ -10,16 +12,26 @@ import { debounceTime } from 'rxjs/operators';
 })
 export class BuscarMcipiosComponent implements OnInit,OnChanges {
 
-  @Output() onEnter:  EventEmitter<string> = new EventEmitter();
-  @Output() ondebounce: EventEmitter<string> = new EventEmitter();
+  @Output() terminoSeleccionado:EventEmitter<string> = new EventEmitter();
+  @Output() idMunicipioSeleccionado:EventEmitter<number> = new EventEmitter();
+  @Input() actualizar:boolean=false;
 
-  @Input() termino:string='';
+    
+  termino:string='';
 
   debounce: Subject<string> = new Subject();
   
+  mostrarSugerencia:boolean=false;
+  MunicipiosSugeridos:Municipio[];
+
+  constructor(private municipiosService:MunicipioService) { }
 
 
-  constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.actualizar.currentValue){
+      this.termino='';
+    }
+  }
 
   ngOnInit() {
 
@@ -28,23 +40,49 @@ export class BuscarMcipiosComponent implements OnInit,OnChanges {
         debounceTime(300)
       )
       .subscribe(valor => {
-      this.ondebounce.emit(valor);
-    })
+        this.terminoSeleccionado.emit(valor);
+        this.buscar();
+      })
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    //si el termino viene vacion se limpia el control...
-   if(changes.termino.currentValue==""){
-     this.termino='';
-   } 
-  }
-
-  buscar(){
-    this.onEnter.emit( this.termino);
-  }
-
+ 
   teclaPrecionada(){
     this.debounce.next( this.termino );
   }
 
+
+  buscar(){
+    this.mostrarSugerencia=true;
+    this.BuscarMcipio(this.termino);
+  }
+
+ 
+  BuscarMcipio(termino:string){
+    this.mostrarSugerencia=true;
+    if (termino==''){
+      this.mostrarSugerencia=false;
+      this.MunicipiosSugeridos=[];
+    }else{
+      this.consultarMunicipios(); 
+    }
+  }
+
+  consultarMunicipios(){
+    this.municipiosService.consultarMunicipios()
+        .subscribe(res=>{
+          this.MunicipiosSugeridos=res.filter(valor=>
+                valor.nombre.toLocaleLowerCase().includes(this.termino.toLocaleLowerCase())).splice(0,7);
+        })
+  }
+
+  seleccionar(municipio:Municipio){
+    if(municipio){
+      this.mostrarSugerencia=false;
+      this.termino = municipio.nombre;
+      this.terminoSeleccionado.emit(this.termino);
+      this.idMunicipioSeleccionado.emit(municipio.idMunicipio) 
+    }
+  }
+
+ 
 }

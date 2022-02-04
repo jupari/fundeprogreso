@@ -38,6 +38,19 @@ export class TemaService {
     )
   }
 
+  consultarTemasxMunicipio(idmunicipio:number):Observable<Tema[]>{
+    return this.http.get<Tema[]>(`${baseUrl}/temas/${idmunicipio}`,{
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    }).pipe(
+      map(res=>{
+        return res;
+      })
+    )
+  }
+  
+
   crearTema(tema:Tema):Observable<Tema>{
     return this.http.post<Tema>(`${baseUrl}/temas`,tema,{
       headers:{
