@@ -1,0 +1,95 @@
+<!-- Modal Add Category -->
+<div class="fondo-modal-imagen animated fadeIn fast" role="dialog" tabindex="-1"
+     id="add-new-event" 
+     [class.ocultar]="modalService.ocultarModal"> 
+
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Agregar un </strong> nuevo examen</h4>
+                <button type="button" class="btn-close" (click)="cerrarModal()" data-bs-dismiss="modal" aria-hidden="true"></button>
+            </div>
+            <div class="modal-body">
+              <div class="card">
+                <div class="card-body p-0">
+                    <!-- Tab panes -->
+                    <div class="tab-content borderform">
+                        <!--Crear la cabecera del examen-->
+                            <div class="p-20" *ngIf="mostrar">
+                              <form [formGroup]="formExamen" (ngSubmit)="guardarExamen()">
+                                <section class="summary-section">
+                                    <div class="form-group">
+                                        <label class="form-label" style="margin-left: 0px;">Nombre</label>
+                                        <input type="text" formControlName="nombre" class="form-control input-sm" placeholder="Escriba un nombre para el examen." value="">
+                                        <span class="form-text text-danger"
+                                            *ngIf="validarCampos('nombre')">
+                                            El Campo es obligatorio
+                                         </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" style="margin-left: 0px;">Puntuación</label>
+                                        <input type="number" formControlName="puntuacion" class="form-control input-sm">
+                                        <span class="form-text text-danger"
+                                            *ngIf="validarCampos('puntuacion')">
+                                            El Campo es obligatorio
+                                         </span>
+                                    </div>
+                                </section>
+                                <div class="summary-section">
+                                  <label class="form-label" style="margin-left: 0px;">Instrucciones</label>
+                                  <textarea type="text" formControlName="instrucciones" class="form-control input-sm" rows="3"></textarea>
+                                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 72.8px;"></div><div class="form-notch-trailing"></div></div></div>
+                                <div class="grupo-botones-sig">
+                                  <button type="button" (click)="cerrarModal()" class="btn btn-secondary waves-effect">Cerrar</button>
+                                  <button type="submit" class="btn btn-primary waves-effect waves-light save-category" (click)="pasarSiguiente()">Siguiente</button>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="p-20"  *ngIf="ocultar">
+                                <div class="form-row">
+                                    <h4>Preguntas del Examen</h4>
+                                </div>
+                                <form [formGroup]="formPregunta" (ngSubmit)="guardarExamen()">
+                                  <section class="summary-section">
+                                      <div class="form-group">
+                                          <label class="form-label" style="margin-left: 0px;">Cuál es la pregunta?</label>
+                                          <input type="text" formControlName="pregunta" class="form-control input-sm" placeholder="Escriba la pregunta." value="">
+                                          <span class="form-text text-danger"
+                                              *ngIf="validarCampos('nombre')">
+                                              El Campo es obligatorio
+                                           </span>
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="form-label" style="margin-left: 0px;">Puntos</label>
+                                          <input type="number" formControlName="puntos" class="form-control input-sm">
+                                          <span class="form-text text-danger"
+                                              *ngIf="validarCampos('puntuacion')">
+                                              El Campo es obligatorio
+                                           </span>
+                                      </div>
+                                  </section>
+                                  <div class="summary-section">
+                                    <label class="form-label" style="margin-left: 0px;">Opciones</label>
+                                    <input type="text" formControlName="opciones" class="form-control input-sm">
+                                  <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 72.8px;"></div><div class="form-notch-trailing"></div></div></div>
+                                  <div class="summary-section">
+                                    <label class="form-label" style="margin-left: 0px;">Cuál es la pregunta correcta?</label>
+                                    <input type="text" formControlName="preguntacorrecta" class="form-control input-sm">
+                                  <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 72.8px;"></div><div class="form-notch-trailing"></div></div></div>
+                                  <div class="grupo-botones-ant">
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light save-category" (click)="pasarAnterior()">Anterior</button>
+                                    <button type="button"  (click)="cerrarModal()" class="btn btn-secondary waves-effect">Cerrar</button>
+                                    
+                                  </div>
+                                </form>
+                              </div>
+
+                    </div>
+                </div>
+            </div> 
+          </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL -->
+

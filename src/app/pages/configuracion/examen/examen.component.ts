@@ -3,6 +3,8 @@ import { Examen } from 'src/app/core/interfaces/examen';
 import { ModalService } from 'src/app/core/services/componentes/modal.service';
 import { ExamenService } from 'src/app/core/services/configuracion/examen.service';
 
+declare function customInitFunction():any;
+
 @Component({
   selector: 'app-examen',
   templateUrl: './examen.component.html',
@@ -17,6 +19,7 @@ export class ExamenComponent implements OnInit {
 
 
   ngOnInit(): void {
+    customInitFunction();
     this.consultar();
   }
 

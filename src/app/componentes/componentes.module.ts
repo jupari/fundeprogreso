@@ -16,6 +16,7 @@ import { ModalcapacitacionComponent } from './modalcapacitacion/modalcapacitacio
 import { ModaldocenteComponent } from './modaldocente/modaldocente.component';
 import { ModalmunicipioComponent } from './modalmunicipio/modalmunicipio.component';
 import { ModaltemaComponent } from './modaltema/modaltema.component';
+import { ModalexamenComponent } from './modalexamen/modalexamen.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -36,6 +37,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ModaldocenteComponent,
     ModalmunicipioComponent,
     ModaltemaComponent,
+    ModalexamenComponent,
 
   ],
   imports: [
@@ -56,6 +58,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ModaldocenteComponent,
     ModalmunicipioComponent,
     ModaltemaComponent,
+    ModalexamenComponent,
 
   ],
   providers:[
