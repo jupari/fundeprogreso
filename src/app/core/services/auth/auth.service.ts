@@ -23,7 +23,7 @@ export class AuthService
     private _rol:string='';
     private _usuario:string='';
     private _perfil:Perfil={};
-
+ 
     public usuarioLogin!:UsuarioLogin; 
 
 
@@ -70,11 +70,10 @@ export class AuthService
     }
 
     get perfil():Perfil{
-       
         return this._perfil;
-       
     }
 
+ 
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------

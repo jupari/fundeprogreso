@@ -54,7 +54,6 @@ export class CapacitacionComponent implements OnInit {
 
   eventos:Evento[]=[];
   calEvent:ElementRef;
-
   optionsCalendario={};
 
   constructor(  public modalService: ModalService
@@ -78,8 +77,6 @@ export class CapacitacionComponent implements OnInit {
   }
 
   escribirEventos(){
-   
-
     this.optionsCalendario={
       plugins: [interationPlugin,dayGridPlugin,timeGridPlugin],
       themeSystem: 'bootstrap',
@@ -96,6 +93,7 @@ export class CapacitacionComponent implements OnInit {
       events:this.eventos,
       eventClick:(calEvent:any, jsEvent:any, view:any)=>{
         this.calEvent=calEvent;
+        //hacer el metodo para traer el tema por municipios
         this.modalService.abrirModal()
       },
       eventDidMount: (info)=>{
@@ -111,12 +109,10 @@ export class CapacitacionComponent implements OnInit {
   }
 
   onDateClick(res:any){
-    console.log(res)
     this.modalService.abrirModal()
   }
 
   eventclic(){
-    console.log('llegue')
     this.modalService.abrirModal()
   }
 

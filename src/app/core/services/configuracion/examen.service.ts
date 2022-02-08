@@ -21,7 +21,7 @@ export class ExamenService {
   get examenes(){
     return this._examenes;
   }
-
+  
   consultar():Observable<Examen[]>{
 
     return this.http.get<Examen[]>(`${baseUrl}/examen`,{
@@ -61,14 +61,14 @@ export class ExamenService {
 
   }
 
-  editar(examen:ExamenBD):Observable<string>{
-    return this.http.put(`${baseUrl}/examen`,examen,{
+  editar(examen:ExamenBD):Observable<ExamenBD>{
+    return this.http.put<ExamenBD>(`${baseUrl}/examen`,examen,{
       headers:{
           'Authorization':`Bearer ${token}`
       }
     }).pipe(
       map(res => {
-          return JSON.stringify(res);
+          return res;
         })
       )
   }

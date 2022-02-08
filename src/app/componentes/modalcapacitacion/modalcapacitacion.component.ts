@@ -1,10 +1,12 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ModalService } from 'src/app/core/services/componentes/modal.service';
 import { CAdminService } from 'src/app/core/services/capacitacion/cadmin.service';
-import { EventoBD } from 'src/app/core/interfaces/eventoBD';
 import { EventoArchivoDisplay } from 'src/app/core/interfaces/eventosarchivos';
 import { Evento } from 'src/app/core/interfaces/evento';
 import { EventoMaterial } from 'src/app/core/interfaces/eventoMaterial';
+import { ExamenPresentadoService } from 'src/app/core/services/capacitacion/examenpresentado.service';
+import { ExamenDisplay } from 'src/app/core/interfaces/examenPresentado';
+import { ModalExamenService } from 'src/app/core/services/componentes/modalexamen.service';
 
 @Component({
   selector: 'app-modalcapacitacion',
@@ -13,10 +15,11 @@ import { EventoMaterial } from 'src/app/core/interfaces/eventoMaterial';
 })
 export class ModalcapacitacionComponent implements OnInit,OnChanges {
 
-  @Input() eventoConsultar!:Evento;
-  
-  constructor(public modalService: ModalService
-              ,private eventoService:CAdminService) { }
+   
+  constructor( public modalService:ModalService
+              ,public modalExamenService: ModalExamenService
+              ,private eventoService:CAdminService
+              ,private examenPresentadoService:ExamenPresentadoService) { }
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -24,6 +27,7 @@ export class ModalcapacitacionComponent implements OnInit,OnChanges {
       this.cargarEvento(changes.eventoConsultar.currentValue.event);
     }
   }
+  @Input() eventoConsultar!:Evento;
 
   evento:EventoMaterial={
     idCia: 0,
@@ -44,13 +48,19 @@ export class ModalcapacitacionComponent implements OnInit,OnChanges {
   linkImagenEvento:string='';
   archivosGuardados:EventoArchivoDisplay[]=[];
   descripcion:string='';
-
+  //esta variable se pasa al examen para que el participante lo diligencie
+  idTemaExamen:number=0;
+  
+  examen:ExamenDisplay;
 
   ngOnInit(): void {
 
 
   }
 
+  activarPanel(){
+    return true;
+  }
 
   cargarEvento(ev:any){
     const {  decription } = ev.extendedProps
@@ -78,6 +88,11 @@ export class ModalcapacitacionComponent implements OnInit,OnChanges {
     refArchivo.target='_blank';
     document.body.appendChild(refArchivo);
     refArchivo.click()
+  }
+
+  abrirModalExamen(ev:any){
+    this.idTemaExamen=ev.idTema;
+    this.modalExamenService.abrirModal();
   }
 
   cerrarModal(){

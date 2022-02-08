@@ -15,12 +15,12 @@
                         <!-- Nav tabs -->
                         <div class="vtabs">
                             <ul class="nav nav-tabs tabs-vertical" role="tablist">
-                                <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#descripcion" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Objetivos</span> </a> </li>
+                                <li class="nav-item"> <a class="nav-link active" id="tab1" data-bs-toggle="tab" href="#descripcion" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Objetivos</span> </a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#material" role="tab"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Material</span></a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#prueba" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Prueba</span></a> </li>
                             </ul>
                             <!-- Tab panes -->
-                            <div class="tab-content">
+                            <div class="tab-content col-md-12 p-1">
                                 <div class="tab-pane active" id="descripcion" role="tabpanel">
                                     <p class="h4">{{descripcion}}</p>
                                     <a [href]="evento.link">{{evento.link}}</a>
@@ -61,14 +61,28 @@
 
                                     </ol>
                                 </div>
-                                <div class="tab-pane p-20" id="prueba" role="tabpanel">Pruba tu conocimiento</div>
+                                <div class="tab-pane p-20" id="prueba" role="tabpanel">
+                                    <table class="table table-hover">
+                                         <tbody>
+                                             <tr *ngFor="let te of evento.temas">
+                                                 <td>{{te.nombreTema}}</td>
+                                                 <td><a (click)="abrirModalExamen(te)" class="cursor text-primary" >Abrir el test</a></td>
+                                             </tr>
+                                         </tbody>   
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
     <!-- /.modal -->
+   
+
 </div>
+
+<app-modalexamenpresentado [idTemaExamen]="idTemaExamen"></app-modalexamenpresentado>
 

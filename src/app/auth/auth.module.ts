@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentesModule } from '../componentes/componentes.module';
 import { PsharedModule } from '../publicpages/pshared/pshared.module';
 import { RecoverpassComponent } from './recoverpass/recoverpass.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 
 
@@ -24,6 +25,7 @@ import { RecoverpassComponent } from './recoverpass/recoverpass.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxCaptchaModule,
     HttpClientModule,
     ComponentesModule,
     PsharedModule

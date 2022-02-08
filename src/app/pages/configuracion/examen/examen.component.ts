@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Examen } from 'src/app/core/interfaces/examen';
 import { ModalService } from 'src/app/core/services/componentes/modal.service';
 import { ExamenService } from 'src/app/core/services/configuracion/examen.service';
+import Swal from 'sweetalert2';
 
 declare function customInitFunction():any;
 
@@ -16,7 +17,7 @@ export class ExamenComponent implements OnInit {
               ,private examenService:ExamenService) { }
 
   examenes:Examen[]=[]
-
+  editarExamen:Examen;
 
   ngOnInit(): void {
     customInitFunction();
@@ -31,7 +32,31 @@ export class ExamenComponent implements OnInit {
   }
 
   editar(ex:Examen){
-    this.abrirModal();    
+    this.editarExamen=ex;
+    this.abrirModal();
+  }
+
+  eliminar(ex:Examen){
+    Swal.fire({
+      title: '¿Borrar Examen?',
+      text: `Esta seguro de Borrar este Examen ${ex.nombre} `,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.examenService.eliminar(ex.idExamen)
+        .subscribe(res=>{
+          Swal.fire(
+            'Información',
+            `El examen ${ex.nombre} se borró con éxito.`,
+            'success');
+            this.consultar();
+        })       
+      }
+    })
   }
 
 

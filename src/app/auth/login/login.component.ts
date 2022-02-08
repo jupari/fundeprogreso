@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   public signInForm: FormGroup;
   showAlert: boolean = false;
 
+  siteKey:string;
+
   constructor(private router: Router,
     private _activatedRoute: ActivatedRoute,
     private _authService: AuthService,
@@ -28,10 +30,13 @@ export class LoginComponent implements OnInit {
    ) { 
        // Create the form
        this.signInForm = this._fB.group({
-        email     : [ localStorage.getItem('user') ||'', [Validators.required]],
-        password  : ['', Validators.required],
-        rememberMe: [false]
+        email       :[ localStorage.getItem('user') ||'', [Validators.required]],
+        password    :['', Validators.required],
+        rememberMe  :[false],
+        recaptcha   :['', [Validators.required]]
     });
+    //llave para la captcha
+    this.siteKey='6Ldjw2ceAAAAALSFLmvc4xPvi2NUEDBBupdT0UsE';
    }
 
  
