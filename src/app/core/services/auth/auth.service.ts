@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, ObservableLike, of, throwError } from 'rxjs';
 import { catchError, switchMap,tap,map } from 'rxjs/operators';
 import { LoginForm } from '../../interfaces/login-form';
 import { Perfil } from '../../interfaces/perfil';
@@ -151,6 +151,23 @@ export class AuthService
                 return of(false)
             }),
         );
+     }
+     //valida si el usuario ya esta logeado
+     validar():Observable<boolean>{
+        return this._httpClient.get(`${ baseUrl }/usuarios/validate`, {
+            headers: {
+                   'Authorization': `Bearer ${this.token}`
+               }
+       }).pipe(
+           switchMap( (resp:any) => {
+               this._authenticated =   true 
+               return of(true);
+           }),
+           catchError(() => {
+              this._router.navigateByUrl('/login');
+               return of(false)
+           }),
+       );
      }
  
      /**

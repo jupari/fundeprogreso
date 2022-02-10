@@ -6,6 +6,7 @@ import { ComponentesModule } from 'src/app/componentes/componentes.module';
 import { TemasxmunicipioComponent } from './temasxmunicipio/temasxmunicipio.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ExamenComponent } from './examen/examen.component';
+import { MensajesComponent } from './mensajes/mensajes.component';
 
 
 
@@ -15,6 +16,7 @@ import { ExamenComponent } from './examen/examen.component';
     TemasComponent,
     TemasxmunicipioComponent,
     ExamenComponent,
+    MensajesComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { ExamenComponent } from './examen/examen.component';
     MunicipioComponent,
     TemasComponent,
     TemasxmunicipioComponent,
+    MensajesComponent,
   ]
 })
 export class ConfiguracionModule { }

@@ -88,8 +88,8 @@ export class CapacitacionComponent implements OnInit {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      editable:true,
-      dateClick: this.onDateClick.bind(this),
+      editable:false,
+      //dateClick: this.onDateClick.bind(this),
       events:this.eventos,
       eventClick:(calEvent:any, jsEvent:any, view:any)=>{
         this.calEvent=calEvent;
@@ -97,7 +97,6 @@ export class CapacitacionComponent implements OnInit {
         this.modalService.abrirModal()
       },
       eventDidMount: (info)=>{
-        console.log('hola ',info);
         var tooltip = new Tooltip(info.el, {
           title: info.event.extendedProps.description,
           placement: 'top',

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-pheader',
@@ -7,9 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PheaderComponent implements OnInit {
 
-  constructor() { }
+
+  spinner:boolean=false;
+
+  constructor(private router:Router
+              ,public autService:AuthService) { }
 
   ngOnInit(): void {
+    this.validar()
+  }
+
+  validar(){
+    this.spinner=true;
+    return this.autService.validar().subscribe(res=>
+      {
+        this.spinner=false;
+        return res;
+      })
+  }
+
+  capacitacion(){
+    this.spinner=true
+    if(this.validar()){
+      this.router.navigateByUrl('/admin')
+          .then(res=>{this.spinner=false})
+
+    }else{
+      this.router.navigateByUrl('/login')
+            .then(res=>{this.spinner=false})
+      
+    }
+  }
+
+  logout(){
+    this.spinner=true;
+    this.autService.signOut().subscribe(
+      res=>{
+        this.spinner=false;
+      }
+    );
+    this.router.navigateByUrl('/public/home');
   }
 
 }

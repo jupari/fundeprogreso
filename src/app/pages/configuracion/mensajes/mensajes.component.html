@@ -1,0 +1,40 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Mensajes</h4>
+            <h6 class="card-subtitle">Consulta los Mensajes Recibidos</h6>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Municipio</th>
+                            <th>Email</th>
+                            <th>Télefono</th>
+                            <th class="text-wrap">Mensaje</th>
+                            <th class="text-nowrap">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mensaje of mensajes">
+                            <td>{{mensaje.nombre}}</td>
+                            <td>{{mensaje.municipio}}</td>
+                            <td>{{mensaje.email}}</td>
+                            <td>{{mensaje.telefono}}</td>
+                            <td>{{mensaje.mensaje}}</td>
+                            <td class="text-nowrap">
+                                <a (click)="eliminar( mensaje )" 
+                                    class="cursor" 
+                                    data-toggle="tooltip" 
+                                    data-original-title="Borrar" 
+                                    title="Borrar"><i class="fas fa-trash-alt text-danger"></i> 
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -55,13 +55,13 @@ export class CapacitacionAdminComponent implements OnInit {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      editable:true,
+      editable:false,
       eventMouseover:function(event,jsEvent,view){
               var str = "Nombre de la tarea:" + event.title + "\ nHora de inicio:" + moment(event.start_time) + "\ nHora de finalización:" + moment(event.end_time) + "\ nDescripción de la tarea:" + event.task_desc + "\ nIniciador:" + event.create_name + "\ nProcessor:" + event.do_name;
               $(this).attr('title',str);
               $(this).css('font-weight','normal');
       },
-      dateClick: this.onDateClick.bind(this),
+      //dateClick: this.onDateClick.bind(this),
       events:this.cadmin.eventos,
       eventClick:(calEvent:any, jsEvent:any, view:any)=>{
         this.calEvent=calEvent;

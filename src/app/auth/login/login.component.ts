@@ -2,8 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 declare function customInitFunction():any;
+const siteKey = environment.siteKeyCaptcha;
 
 @Component({
   selector: 'app-login',
@@ -27,16 +29,19 @@ export class LoginComponent implements OnInit {
     private _authService: AuthService,
     private _fB: FormBuilder,
     private _router: Router
-   ) { 
+   ) 
+   { 
        // Create the form
        this.signInForm = this._fB.group({
         email       :[ localStorage.getItem('user') ||'', [Validators.required]],
         password    :['', Validators.required],
         rememberMe  :[false],
         recaptcha   :['', [Validators.required]]
-    });
-    //llave para la captcha
-    this.siteKey='6Ldjw2ceAAAAALSFLmvc4xPvi2NUEDBBupdT0UsE';
+        });
+
+        //llave para la captcha
+        this.siteKey=siteKey;
+        
    }
 
  

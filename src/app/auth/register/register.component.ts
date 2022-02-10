@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CrearUsuario } from 'src/app/core/interfaces/usuarios';
+import { EmailPattern, NombreApellidoPattern } from 'src/app/core/pattern/pattern';
 import { ModalDescargaArchivoService } from 'src/app/core/services/componentes/modal-descargaarchivos.service';
 import { UsuariosService } from 'src/app/core/services/usuarios/usuarios.service';
 import { ValidacionEmailService } from 'src/app/core/services/usuarios/validacio-email.service';
@@ -32,9 +33,8 @@ export class RegisterComponent implements OnInit {
 
   //variable para establecer si el formulario fue enviado
   formSubmitted=false;
-  //validaciones por expresiones regulares del nombre y apellido y del email  
-  public nombreApellidoPattern: string = '([a-zA-Z]+) ([a-zA-Z]+)';
-  public emailPattern         : string = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+ 
+ 
   //formulario
 
   formRegistro!:FormGroup; 
@@ -43,18 +43,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     registerInit();
      this.formRegistro = this.fb.group({
-      nombreCompleto      : ['',[Validators.required,Validators.pattern(this.nombreApellidoPattern)]],
+      nombreCompleto      : ['',[Validators.required,Validators.pattern(NombreApellidoPattern)]],
       nombreUsuario       : [''],
       clave               : ['',[Validators.required,Validators.minLength(6)]],     
       validar             : ['',[Validators.required]],     
       documentoIdentidad  : ['',[Validators.required]],
       telefono            : ['',[Validators.required]],
       direccion           : ['',[Validators.required]],
-      email               : ['',[Validators.required,Validators.pattern(this.emailPattern)],[this.validacionEmailService]],
+      email               : ['',[Validators.required,Validators.pattern(EmailPattern)],[this.validacionEmailService]],
       idMunicipio         : [''],
       municipio           : [''],
       usuario             : [''],
-      rol                 : ['ASISTENTE'],
+      rol                 : ['PARTICIPANTE'],
       imagen              : [''],
     },{
       validators:[this.validacionPassword('clave','validar')]

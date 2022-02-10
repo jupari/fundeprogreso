@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-center mt-2">
+  <div class="card" style="width: 80%; height: 80%;">
+    <div class="card-body">
+      <section id="contacto">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 text-center">
+                <h2>Contactenos</h2>
+                <hr class="star-primary">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
+                <form   name="sentMessage"  
+                        [formGroup] ="contactForm" 
+                        (submit)="enviar()">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      <label>Nombre</label>
+                      <input type="text" 
+                              class="form-control" 
+                              placeholder="Nombre" 
+                              id="name" 
+                              formControlName = "nombre"
+                              required data-validation-required-message="Por favor, ingrese su nombre.">
+                      <p *ngIf="validarCampos('nombre')" class="form-text text-danger help-block">*El campo nombre es obligatorio</p>
+                      <p *ngIf="validarCampos('nombre')" class="form-text text-danger help-block">{{ contactForm.errors | json}}</p>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Municipio al que pertenece</label>
+                      <app-buscar-mcipios 
+                              (idMunicipioSeleccionado)="idMunicipioSeleccionado($event)">
+                        </app-buscar-mcipios> 
+                    </div>
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      <label>Email</label>
+                      <input type="email" 
+                              class="form-control" 
+                              placeholder="Email" 
+                              id="email" 
+                              formControlName="email"
+                              required data-validation-required-message="Por favor, ingrese su email.">
+                      <p *ngIf="validarCampos('email')" class="form-text text-danger help-block">{{emailErrors}}</p>
+                    </div>
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      <label>Número de teléfono</label>
+                      <input  type="tel" 
+                              class="form-control" 
+                              placeholder="Número de teléfono" 
+                              id="phone" 
+                              formControlName="telefono"
+                              required data-validation-required-message="Por favor, ingrese su número de teléfono.">
+                      <p *ngIf="validarCampos('telefono')" class="form-text text-danger help-block">*El campo telefono es obligatorio</p>
+                    </div>
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                      <label>Mensaje</label>
+                      <textarea   rows="5" 
+                                  class="form-control" 
+                                  placeholder="Mensaje" 
+                                  id="message" 
+                                  formControlName="mensaje"
+                                  required data-validation-required-message="Por favor, ingrese un mensaje."></textarea>
+                      <p *ngIf="validarCampos('mensaje')" class="form-text text-danger help-block">*El campo mensaje debe tener algun texto</p>
+                    </div>
+                    <div class="form-group">
+                      <ngx-recaptcha2 #captchaElem
+                                  [siteKey]="siteKey"
+                                  language="es"
+                                  formControlName="recaptcha">
+                      </ngx-recaptcha2>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <label for="terminosycondiciones">
+                        <input type="checkbox" formControlName="tc" id="terminosycondiciones" /> 
+                          Acepto <a href="" target="_blank"> Terminos y Condiciones</a>                
+                      </label>
+                      <p *ngIf="validarCampos('tc')" class="form-text text-danger help-block">*Aceptar terminos y condiciones</p>
+                    </div>
+                    <div class="form-group col-xs-12 pt-2">
+                      <button type="submit"  [disabled]="contactForm.pending" class="btn btn-success">Enviar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+      </section>
+    </div>
+  </div>
+</div>
